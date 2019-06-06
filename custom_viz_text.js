@@ -74,7 +74,7 @@ const customVizText = {
    
        // Grab the first cell of the data
        
-       for (i = 0; i < data.length; i++) { 
+       for (let i in data) { 
        var row = data[i];
        column = row[queryResponse.fields.dimensions[0].name];
          
