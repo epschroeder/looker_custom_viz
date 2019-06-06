@@ -37,13 +37,13 @@ const customTextViz = {
              flex-direction: column;
              /*justify-content: center;*/
              text-align: left;
+						 font-family: Open Sans,Noto Sans JP,Noto Sans,Noto Sans CJK KR,Helvetica,Arial,sans-serif;
            }
            .hello-world-text-large {
-             font-size: 18px;
+             font-size: 14px;
            }
            .hello-world-text-small {
-             font-size: 12px;
-						 color: #ff0000 !important;
+             font-size: 10px;
            }
          </style>
        `;
@@ -76,7 +76,7 @@ const customTextViz = {
        var row = data[i];
        column = row[queryResponse.fields.dimensions[0].name];
          
-       this._textElement.innerHTML += '<p>'+LookerCharts.Utils.htmlForCell(column) + '</p>';  
+       this._textElement.innerHTML += '<p>' + LookerCharts.Utils.htmlForCell(column) + '</p>';  
        }
        
     //    var firstRow = data[0];
@@ -86,10 +86,10 @@ const customTextViz = {
     //    this._textElement.innerHTML = text;
    
        // Set the size to the user-selected size
-       if (config.font_size == "small") {
-         this._textElement.className = "hello-world-text-small";
-       } else {
+       if (config.font_size == "large") {
          this._textElement.className = "hello-world-text-large";
+       } else {
+         this._textElement.className = "hello-world-text-small";
        }
        }
    };
