@@ -43,7 +43,7 @@ const customVizText = {
            .text-large {
             font-size: 14px;
            }
-           .text-small {
+           .hello-world-vis p {
             font-size: 10px;
            }
          </style>
