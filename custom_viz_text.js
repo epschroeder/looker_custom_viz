@@ -36,6 +36,7 @@ const customVizText = {
             display: flex;
             flex-direction: column;
             /*justify-content: center;*/
+            /*height: 100%;*/
             text-align: left;
             font-family: Open Sans,Noto Sans JP,Noto Sans,Noto Sans CJK KR,Helvetica,Arial,sans-serif;
             font-size: 12px;
@@ -73,19 +74,14 @@ const customVizText = {
        }
    
        // Grab the first cell of the data
-       
-       for (let i in data) { 
-       var row = data[i];
-       column = row[queryResponse.fields.dimensions[0].name];
-         
-       this._textElement.innerHTML += '<p>' + LookerCharts.Utils.htmlForCell(column) + '</p>';  
-       }
-       
-    //    var firstRow = data[0];
-    //    var firstCell = firstRow[queryResponse.fields.dimensions[0].name];
+      var html = "";
+		for(var row of data) {
+			var cell = row[queryResponse.fields.dimensions[0].name];
+			html += '<p>'+LookerCharts.Utils.htmlForCell(cell)+'</p>';
+		}
    
        // Insert the data into the page
-    //    this._textElement.innerHTML = text;
+      this._textElement.innerHTML = html;
    
        // Set the size to the user-selected size
        if (config.font_size == "large") {
@@ -93,7 +89,9 @@ const customVizText = {
        } else {
          this._textElement.className = "text-small";
        }
+      doneRendering();
        }
+
    };
    
    looker.plugins.visualizations.add(customVizText);
