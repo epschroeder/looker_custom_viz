@@ -5,7 +5,7 @@
  *  - Example Visualizations - https://github.com/looker/custom_visualizations_v2/tree/master/src/examples
  **/
 
-const customTextViz = {
+const customVizText = {
     /**
      * Configuration options for your visualization. In Looker, these show up in the vis editor
      * panel but here, you can just manually set your default values in the code.
@@ -32,18 +32,19 @@ const customTextViz = {
        var css = element.innerHTML = `
          <style>
            .hello-world-vis {
-             /* Vertical centering */
-             display: flex;
-             flex-direction: column;
-             /*justify-content: center;*/
-             text-align: left;
-						 font-family: Open Sans,Noto Sans JP,Noto Sans,Noto Sans CJK KR,Helvetica,Arial,sans-serif;
+            /* Vertical centering */
+            display: flex;
+            flex-direction: column;
+            /*justify-content: center;*/
+            text-align: left;
+            font-family: Open Sans,Noto Sans JP,Noto Sans,Noto Sans CJK KR,Helvetica,Arial,sans-serif;
+            font-size: 12px;
            }
-           .hello-world-text-large {
-             font-size: 14px;
+           .text-large {
+            font-size: 14px;
            }
-           .hello-world-text-small {
-             font-size: 10px;
+           .text-small {
+            font-size: 10px;
            }
          </style>
        `;
@@ -54,6 +55,7 @@ const customTextViz = {
    
        // Create an element to contain the text.
        this._textElement = container.appendChild(document.createElement("div"));
+       container.className = "hello-world-vis";
        },
    
     /**
@@ -87,11 +89,11 @@ const customTextViz = {
    
        // Set the size to the user-selected size
        if (config.font_size == "large") {
-         this._textElement.className = "hello-world-text-large";
+         this._textElement.className = "text-large";
        } else {
-         this._textElement.className = "hello-world-text-small";
+         this._textElement.className = "text-small";
        }
        }
    };
    
-   looker.plugins.visualizations.add(customTextViz);
+   looker.plugins.visualizations.add(customVizText);
