@@ -1,4 +1,11 @@
-const customVizText = {
+/**
+ * Welcome to the Looker Visualization Builder! Please refer to the following resources 
+ * to help you write your visualization:
+ *  - API Documentation - https://github.com/looker/custom_visualizations_v2/blob/master/docs/api_reference.md
+ *  - Example Visualizations - https://github.com/looker/custom_visualizations_v2/tree/master/src/examples
+ **/
+
+const customTextViz = {
     /**
      * Configuration options for your visualization. In Looker, these show up in the vis editor
      * panel but here, you can just manually set your default values in the code.
@@ -32,10 +39,10 @@ const customVizText = {
              justify-content: center;
              text-align: left;
            }
-           .text-large {
+           .hello-world-text-large {
              font-size: 72px;
            }
-           .text-small {
+           .hello-world-text-small {
              font-size: 18px;
            }
          </style>
@@ -66,8 +73,10 @@ const customVizText = {
        // Grab the first cell of the data
        
        for (i = 0; i < data.length; i++) { 
-       
-       this._textElement.innerHTML += 'hello_'+i +' <br />';
+       var row = data[i];
+       column = row[queryResponse.fields.dimensions[0].name];
+         
+       this._textElement.innerHTML += LookerCharts.Utils.htmlForCell(column) + '<br /><br />';  
        }
        
     //    var firstRow = data[0];
@@ -78,11 +87,11 @@ const customVizText = {
    
        // Set the size to the user-selected size
        if (config.font_size == "small") {
-         this._textElement.className = "text-small";
+         this._textElement.className = "hello-world-text-small";
        } else {
-         this._textElement.className = "text-small";
+         this._textElement.className = "hello-world-text-small";
        }
        }
    };
    
-   looker.plugins.visualizations.add(customVizText);
+   looker.plugins.visualizations.add(customTextViz);
