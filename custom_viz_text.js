@@ -19,7 +19,7 @@ const customTextViz = {
            {"Small": "small"}
          ],
          display: "radio",
-         default: "large"
+         default: "small"
        }
      },
     
@@ -33,24 +33,24 @@ const customTextViz = {
          <style>
            .hello-world-vis {
              /* Vertical centering */
-             height: 100%;
              display: flex;
              flex-direction: column;
-             justify-content: center;
+             /*justify-content: center;*/
              text-align: left;
            }
            .hello-world-text-large {
-             font-size: 72px;
+             font-size: 18px;
            }
            .hello-world-text-small {
-             font-size: 18px;
+             font-size: 12px;
+						 color: #ff0000 !important;
            }
          </style>
        `;
    
        // Create a container element to let us center the text.
        var container = element.appendChild(document.createElement("div"));
-       container.className = "hello-world-vis hello-world-text-small";
+       container.className = "hello-world-vis";
    
        // Create an element to contain the text.
        this._textElement = container.appendChild(document.createElement("div"));
@@ -76,7 +76,7 @@ const customTextViz = {
        var row = data[i];
        column = row[queryResponse.fields.dimensions[0].name];
          
-       this._textElement.innerHTML += LookerCharts.Utils.htmlForCell(column) + '<br /><br />';  
+       this._textElement.innerHTML += '<p>'+LookerCharts.Utils.htmlForCell(column) + '</p>';  
        }
        
     //    var firstRow = data[0];
@@ -89,7 +89,7 @@ const customTextViz = {
        if (config.font_size == "small") {
          this._textElement.className = "hello-world-text-small";
        } else {
-         this._textElement.className = "hello-world-text-small";
+         this._textElement.className = "hello-world-text-large";
        }
        }
    };
