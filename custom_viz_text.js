@@ -39,6 +39,7 @@ const customVizText = {
  
      // Create an element to contain the text.
      this._textElement = container.appendChild(document.createElement("div"));
+      this._textElement.className = "container";
      },
  
   /**
@@ -65,7 +66,7 @@ const customVizText = {
     html += '<dt class="col-sm-3">'+LookerCharts.Utils.htmlForCell(cell1)+'</dt>';
 
     var cell2 = row[queryResponse.fields.dimensions[1].name];
-    html += '<dd class="col-sm-9">'+LookerCharts.Utils.htmlForCell(cell2)+'</dd>';
+    html += '<dd class="col-sm-9 text-success"><p>'+LookerCharts.Utils.htmlForCell(cell2)+'</p></dd>';
   }
   var html_end = "<dl>";
      // Insert the data into the page
