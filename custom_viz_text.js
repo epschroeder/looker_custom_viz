@@ -39,7 +39,6 @@ const customVizText = {
  
      // Create an element to contain the text.
      this._textElement = container.appendChild(document.createElement("div"));
-     container.className = "hello-world-vis";
      },
  
   /**
@@ -57,12 +56,17 @@ const customVizText = {
      }
  
      // Grab the first cell of the data
-    var html = "";
+    var html = "<dl class=\"row\">";
+    // <dt class="col-sm-3">Description lists</dt>
+    // <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
   for(var row of data) {
-    var cell = row[queryResponse.fields.dimensions[0].name];
-    html += '<p class="small">'+LookerCharts.Utils.htmlForCell(cell)+'</p>';
+    var cell1 = row[queryResponse.fields.dimensions[0].name];
+    html += '<dt class="col-sm-3">'+LookerCharts.Utils.htmlForCell(cell1)+'</dt>';
+
+    var cell2 = row[queryResponse.fields.dimensions[1].name];
+    html += '<dd class="col-sm-9">'+LookerCharts.Utils.htmlForCell(cell2)+'</dd>';
   }
- 
+  var html += "</dl>";
      // Insert the data into the page
     this._textElement.innerHTML = html;
  
