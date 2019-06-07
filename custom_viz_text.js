@@ -63,6 +63,7 @@ const customVizText = {
   for(var row of data) {
     var cell = row[queryResponse.fields.dimensions[0].name];
     html += '<p class="small">'+LookerCharts.Utils.htmlForCell(cell)+'</p>';
+    html += '<p>You can use the mark tag to <mark>highlight</mark> text.</p>';
   }
  
      // Insert the data into the page
