@@ -30,9 +30,7 @@ const customVizText = {
      create: function(element, config){
           // Insert a <style> tag with some styles we'll use later.
      var css = element.innerHTML = `
-       <style>
-        
-       </style>
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
      `;
  
      // Create a container element to let us center the text.
@@ -63,7 +61,6 @@ const customVizText = {
   for(var row of data) {
     var cell = row[queryResponse.fields.dimensions[0].name];
     html += '<p class="small">'+LookerCharts.Utils.htmlForCell(cell)+'</p>';
-    html += '<p>You can use the mark tag to <mark>highlight</mark> text.</p>';
   }
  
      // Insert the data into the page
