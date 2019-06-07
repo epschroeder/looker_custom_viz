@@ -56,9 +56,10 @@ const customVizText = {
      }
  
      // Grab the first cell of the data
-    var html = "<dl class=\"row\">";
+    var html_start = "<dl class=\"row\">";
     // <dt class="col-sm-3">Description lists</dt>
     // <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
+    html = "";
   for(var row of data) {
     var cell1 = row[queryResponse.fields.dimensions[0].name];
     html += '<dt class="col-sm-3">'+LookerCharts.Utils.htmlForCell(cell1)+'</dt>';
@@ -66,9 +67,9 @@ const customVizText = {
     var cell2 = row[queryResponse.fields.dimensions[1].name];
     html += '<dd class="col-sm-9">'+LookerCharts.Utils.htmlForCell(cell2)+'</dd>';
   }
-  var html += "</dl>";
+  var html_end = "<dl>";
      // Insert the data into the page
-    this._textElement.innerHTML = html;
+    this._textElement.innerHTML = html_start + html + html_end;
  
      // Set the size to the user-selected size
      if (config.font_size == "large") {
