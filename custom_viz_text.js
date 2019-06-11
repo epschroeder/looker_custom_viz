@@ -24,8 +24,8 @@ const customVizTextFromData = {
       '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">';
 
     // Create a container element to let us center the text.
-    this._visContainer = element.appendChild(document.createElement("div"));
-    this._visContainer.className = "container-fluid";
+    this._vizContainer = element.appendChild(document.createElement("div"));
+    this._vizContainer.className = "container-fluid";
   },
 
   /**
@@ -74,7 +74,7 @@ const customVizTextFromData = {
     html += "</div>";
     
     // Insert the generated html into the page
-    this._visContainer.innerHTML = html;
+    this._vizContainer.innerHTML = html;
 
     doneRendering();
   }
