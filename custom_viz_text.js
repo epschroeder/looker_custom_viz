@@ -35,12 +35,12 @@ const customVizText = {
  
      // Create a container element to let us center the text.
      var container = element.appendChild(document.createElement("div"));
-     container.className = "hello-world-vis";
+    
  
      // Create an element to contain the text.
-     this._textElement = container.appendChild(document.createElement("div"));
-      this._textElement.className = "container";
-     },
+    this._textElement = container.appendChild(document.createElement("div"));
+    this._textElement.className = "container-fluid";
+    },
  
   /**
    * UpdateAsync is the function that gets called (potentially) multiple times. It receives
@@ -63,10 +63,10 @@ const customVizText = {
     html = "";
   for(var row of data) {
     var cell1 = row[queryResponse.fields.dimensions[0].name];
-    html += '<dt class="col-sm-3">'+LookerCharts.Utils.htmlForCell(cell1)+'</dt>';
+    html += '<dt class="col-sm-12">'+LookerCharts.Utils.htmlForCell(cell1)+'</dt>';
 
     var cell2 = row[queryResponse.fields.dimensions[1].name];
-    html += '<dd class="col-sm-9 text-success"><p>'+LookerCharts.Utils.htmlForCell(cell2)+'</p></dd>';
+    html += '<dd class="col-sm-12">'+LookerCharts.Utils.htmlForCell(cell2)+'</dd>';
   }
   var html_end = "<dl>";
      // Insert the data into the page
