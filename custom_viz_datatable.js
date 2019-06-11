@@ -6,7 +6,7 @@
  * Created by: Egbert Schroeder
  **/
 
-const customVizTextFromData = {
+const customVizDataTable = {
   /**
    * Configuration options
    *
@@ -21,11 +21,10 @@ const customVizTextFromData = {
   create: function(element, config) {
     // Insert Bootstrap css file
     element.innerHTML =
-      '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">';
+      '<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">';
 
     // Create a container element to let us center the text.
     this._vizContainer = element.appendChild(document.createElement("div"));
-    this._vizContainer.className = "container-fluid";
   },
 
   /**
@@ -53,31 +52,35 @@ const customVizTextFromData = {
     }
 
     // Grab the first cell of the data
-    var first_row = data[0];
+    // var first_row = data[0];
 
-    // Grab first column for the title
-    var title = first_row[queryResponse.fields.dimensions[0].name];
-    
-    // Grab second column for the paragraph
-    var paragraph = first_row[queryResponse.fields.dimensions[1].name];
+    // Grab first column
+    // var cell1 = first_row[queryResponse.fields.dimensions[0].name];
 
-    // Insert the data into text elements 
-    var html = '<div class="row">';
-    html +=
-      '<h4 class="col-sm-12">' +
-      LookerCharts.Utils.htmlForCell(title) +
-      "</h4>";
-    html +=
-      '<p class="col-sm-12">' +
-      LookerCharts.Utils.htmlForCell(paragraph) +
-      "</p>";
-    html += "</div>";
-    
+    // Grab second column
+    // var cell2 = first_row[queryResponse.fields.dimensions[1].name];
+
+    // Insert the data into table elements
+    // var html = "<tr>";
+    // html += "<td>" + LookerCharts.Utils.htmlForCell(title) + "</td>";
+    // html += "<td>" + LookerCharts.Utils.htmlForCell(paragraph) + "</td>";
+    // html += "</tr>";
+
+    var html =
+      '<table id="example"><thead><tr><th>1</th><th>2</th></tr></thead><tbody><tr><td>3268978</td><td>45644564564</td></tr></tbody></table>';
     // Insert the generated html into the page
     this._vizContainer.innerHTML = html;
 
     doneRendering();
+
+    $(document).ready(function() {
+      console.log(queryResponse);
+      $("#example").DataTable({
+        paging: false,
+        data: queryResponse
+      });
+    });
   }
 };
 
-looker.plugins.visualizations.add(customVizTextFromData);
+looker.plugins.visualizations.add(customVizDataTable);
