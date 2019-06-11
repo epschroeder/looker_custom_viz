@@ -6,7 +6,7 @@
  * Created by: Egbert Schroeder
  **/
 
-const customVisTextFromData = {
+const customVizTextFromData = {
   /**
    * Configuration options
    *
@@ -80,4 +80,4 @@ const customVisTextFromData = {
   }
 };
 
-looker.plugins.visualizations.add(customVisTextFromData);
+looker.plugins.visualizations.add(customVizTextFromData);
