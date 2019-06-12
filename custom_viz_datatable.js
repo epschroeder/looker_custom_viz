@@ -19,7 +19,7 @@ const customVizDataTable = {
    * data is passed to it.
    **/
   create: function(element, config) {
-    // Insert Bootstrap css file
+    // Insert DataTables css file
     element.innerHTML =
       '<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">';
 
@@ -43,10 +43,10 @@ const customVizDataTable = {
     this.clearErrors();
 
     // Throw some errors and exit if the shape of the data isn't what this chart needs
-    if (queryResponse.fields.dimensions.length == 0) {
+    if (queryResponse.fields.dimensions.length == 0 && queryResponse.fields.measures.length == 0) {
       this.addError({
-        title: "No Dimensions",
-        message: "This chart requires dimensions."
+        title: "No Fields",
+        message: "This chart requires at least one dimension or measure."
       });
       return;
     }
@@ -65,21 +65,44 @@ const customVizDataTable = {
     // html += "<td>" + LookerCharts.Utils.htmlForCell(title) + "</td>";
     // html += "<td>" + LookerCharts.Utils.htmlForCell(paragraph) + "</td>";
     // html += "</tr>";
-
+      
+      var dataArr = [];
+      var headerArr = [];
+      var counter = 0;
+      
+      for (let i = 0; i < data.length; i++) {
+        var row = data[i];
+        var rowData = [];
+        for (var key in row) {
+          //key_new = key.replace('.','_');  
+          rowData.push(row[key].value);
+          if (i == 0){
+        headerArr.push({"title":key}) ;
+          }
+        }
+        dataArr.push(rowData);
+      }
+      //dataArr = JSON.stringify(dataArr);
+      //console.log(headerArr);
+      //alert(dataArr);
+      
     var html =
-      '<table id="example"><thead><tr><th>1</th><th>2</th></tr></thead><tbody><tr><td>3268978</td><td>45644564564</td></tr></tbody></table>';
+      '<table id="example"></table>';
     // Insert the generated html into the page
     this._vizContainer.innerHTML = html;
-
-    doneRendering();
+  
 
     $(document).ready(function() {
-      console.log(queryResponse);
+      //console.log(data);
       $("#example").DataTable({
-        paging: false,
-        data: queryResponse
+        searching: true,
+        paging: true,
+        data: dataArr,
+        columns: headerArr
+        
       });
     });
+      doneRendering();
   }
 };
 
