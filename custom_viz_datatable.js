@@ -110,6 +110,7 @@ const customVizDataTable = {
 
     var dataArr = [];
     var headerArr = [];
+    var sortArr = [];
 
     for (let i = 0; i < data.length; i++) {
       var row = data[i];
@@ -117,35 +118,60 @@ const customVizDataTable = {
       for (var key in row) {
         rowData.push(row[key].value);
         if (i == 0) {
-          for (var x = 0; x < queryResponse.fields.dimensions.length; x++) {
-            if (
-              queryResponse.fields.dimensions[x]["suggest_dimension"] == key
-            ) {
-              var label = queryResponse.fields.dimensions[x].label;
-              var label_short = queryResponse.fields.dimensions[x].label_short;
-              var type = queryResponse.fields.dimensions[x].type;
+          columnCounter = 0;
+          for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
+            if (queryResponse.fields.dimension_like[x]["name"] == key) {
+              var label = queryResponse.fields.dimension_like[x].label;
+              var labelShort =
+                queryResponse.fields.dimension_like[x].labelShort;
+              var type = queryResponse.fields.dimension_like[x].type;
+              if (queryResponse.fields.dimension_like[x].sorted) {
+                var orderDirection = "";
+                if (
+                  queryResponse.fields.dimension_like[x].sorted.desc == true
+                ) {
+                  orderDirection = "desc";
+                } else if (
+                  queryResponse.fields.dimension_like[x].sorted.desc == false
+                ) {
+                  orderDirection = "asc";
+                } else {
+                  orderDirection = null;
+                }
+                sortArr.push([columnCounter, orderDirection]);
+              }
             }
+            columnCounter++;
           }
-          for (var x = 0; x < queryResponse.fields.measures.length; x++) {
-            if (queryResponse.fields.measures[x]["suggest_dimension"] == key) {
-              var label = queryResponse.fields.measures[x].label;
-              var label_short = queryResponse.fields.measures[x].label_short;
-              var type = queryResponse.fields.measures[x].type;
+          for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
+            if (queryResponse.fields.measure_like[x]["name"] == key) {
+              var label = queryResponse.fields.measure_like[x].label;
+              var labelShort = queryResponse.fields.measure_like[x].labelShort;
+              var type = queryResponse.fields.measure_like[x].type;
+              if (queryResponse.fields.measure_like[x].sorted) {
+                var orderDirection = "";
+                if (queryResponse.fields.measure_like[x].sorted.desc == true) {
+                  orderDirection = "desc";
+                } else if (
+                  queryResponse.fields.measure_like[x].sorted.desc == false
+                ) {
+                  orderDirection = "asc";
+                } else {
+                  orderDirection = null;
+                }
+                sortArr.push([columnCounter, orderDirection]);
+              }
             }
+            columnCounter++;
           }
-          if (config.showFullFieldName == false) {
-            var column_title = label_short;
-          } else {
-            var column_title = label;
-          }
-          headerArr.push({ title: column_title, type: type });
+          headerArr.push({ title: label, type: type });
         }
       }
       dataArr.push(rowData);
     }
 
     var html =
-      '<table id="lookerDataTable" class="table table-striped table-bordered" style="width:100%"></table>';
+      '<table id="lookerDataTable" class="table" style="width:100%"></table>';
     // Insert the generated html into the page
     this._vizContainer.innerHTML = html;
 
@@ -155,7 +181,8 @@ const customVizDataTable = {
         searching: config.showSearchBar,
         paging: config.showPagination,
         data: dataArr,
-        columns: headerArr
+        columns: headerArr,
+        order: sortArr
       });
     });
 
@@ -164,6 +191,12 @@ const customVizDataTable = {
       $("#lookerDataTable").addClass("table-bordered");
     } else {
       $("#lookerDataTable").removeClass("table-bordered");
+    }
+    // Show or hide the table border
+    if (config.stripedRows == true) {
+      $("#lookerDataTable").addClass("table-striped");
+    } else {
+      $("#lookerDataTable").removeClass("table-striped");
     }
 
     doneRendering();
