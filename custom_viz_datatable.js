@@ -1,7 +1,7 @@
 /**
  * This is a Custom Visualization for Looker
  *
- * It shows the first 2 dimension columns from the fir result as a title and a paragraph
+ * It's a table visualization based on the DataTables.js library
  *
  * Created by: Egbert Schroeder
  **/
@@ -13,18 +13,41 @@ const customVizDataTable = {
    **/
 
   options: {
+    // Plot
     showSearch: {
       default: false,
-      label: "Show searchbar to search results",
+      label: "Show Searchbar",
       order: 1,
-      section: "Options",
+      section: "Plot",
       type: "boolean"
     },
     showPagination: {
       default: false,
-      label: "Show pagination to navigate through results",
+      label: "Show Pagination",
       order: 2,
-      section: "Options",
+      section: "Plot",
+      type: "boolean"
+    },
+    showRowNumbers: {
+      default: false,
+      label: "Show Row Numbers",
+      order: 2,
+      section: "Plot",
+      type: "boolean"
+    },
+    // SERIES
+    truncateColumnNames: {
+      default: false,
+      label: "Truncate Column Names",
+      order: 1,
+      section: "Series",
+      type: "boolean"
+    },
+    showFullFieldName: {
+      default: true,
+      label: "Show Full Field Name",
+      order: 2,
+      section: "Series",
       type: "boolean"
     }
   },
@@ -34,7 +57,7 @@ const customVizDataTable = {
    * data is passed to it.
    **/
   create: function(element, config) {
-    // Insert DataTables css file
+    // Insert Bootstrap and DataTables css file
     element.innerHTML =
       '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">\
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>';
@@ -70,19 +93,8 @@ const customVizDataTable = {
       return;
     }
 
-    function capitalize(str) {
-      str = str.split(" ");
-
-      for (var i = 0, x = str.length; i < x; i++) {
-        str[i] = str[i][0].toUpperCase() + str[i].substr(1);
-      }
-
-      return str.join(" ");
-    }
-
     var dataArr = [];
     var headerArr = [];
-    var counter = 0;
 
     for (let i = 0; i < data.length; i++) {
       var row = data[i];
@@ -90,9 +102,28 @@ const customVizDataTable = {
       for (var key in row) {
         rowData.push(row[key].value);
         if (i == 0) {
-          key = key.split(".")[1].replace("_", " ");
-          key = capitalize(key);
-          headerArr.push({ title: key });
+          for (var x = 0; x < queryResponse.fields.dimensions.length; x++) {
+            if (
+              queryResponse.fields.dimensions[x]["suggest_dimension"] == key
+            ) {
+              var label = queryResponse.fields.dimensions[x].label;
+              var label_short = queryResponse.fields.dimensions[x].label_short;
+              var type = queryResponse.fields.dimensions[x].type;
+            }
+          }
+          for (var x = 0; x < queryResponse.fields.measures.length; x++) {
+            if (queryResponse.fields.measures[x]["suggest_dimension"] == key) {
+              var label = queryResponse.fields.measures[x].label;
+              var label_short = queryResponse.fields.measures[x].label_short;
+              var type = queryResponse.fields.measures[x].type;
+            }
+          }
+          if (config.showFullFieldName == false) {
+            var column_title = label_short;
+          } else {
+            var column_title = label;
+          }
+          headerArr.push({ title: column_title, type: type });
         }
       }
       dataArr.push(rowData);
