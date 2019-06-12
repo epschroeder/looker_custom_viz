@@ -75,7 +75,7 @@ const customVizDataTable = {
     //console.log(headerArr);
     //alert(dataArr);
 
-    var html = '<table id="example"></table>';
+    var html = '<table id="example" class="table table-striped table-bordered"></table>';
     // Insert the generated html into the page
     this._vizContainer.innerHTML = html;
 
