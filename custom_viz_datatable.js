@@ -22,7 +22,7 @@ const customVizDataTable = {
     // Insert DataTables css file
     element.innerHTML =
       '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">\
-      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/datatables.min.css"/>';
+      <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>';
 
     // Create a container element to let us center the text.
     this._vizContainer = element.appendChild(document.createElement("div"));
@@ -55,6 +55,16 @@ const customVizDataTable = {
       return;
     }
 
+    function capitalize(str) {
+      str = str.split(" ");
+
+      for (var i = 0, x = str.length; i < x; i++) {
+        str[i] = str[i][0].toUpperCase() + str[i].substr(1);
+      }
+
+      return str.join(" ");
+    }
+
     var dataArr = [];
     var headerArr = [];
     var counter = 0;
@@ -63,19 +73,17 @@ const customVizDataTable = {
       var row = data[i];
       var rowData = [];
       for (var key in row) {
-        //key_new = key.replace('.','_');
         rowData.push(row[key].value);
         if (i == 0) {
+          key = key.split(".")[1].replace("_", " ");
+          key = capitalize(key);
           headerArr.push({ title: key });
         }
       }
       dataArr.push(rowData);
     }
-    //dataArr = JSON.stringify(dataArr);
-    //console.log(headerArr);
-    //alert(dataArr);
 
-    var html = '<table id="example" class="table table-striped table-bordered"></table>';
+    var html = '<table id="example" class="table table-striped table-bordered" style="width:100%"></table>';
     // Insert the generated html into the page
     this._vizContainer.innerHTML = html;
 
