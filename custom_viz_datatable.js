@@ -13,21 +13,20 @@ const customVizDataTable = {
    **/
 
   options: {
-    showSearch {
+    showSearch: {
       default: false,
       label: "Show searchbar to search results",
       order: 1,
       section: "Options",
       type: "boolean"
     },
-    showPagination {
+    showPagination: {
       default: false,
       label: "Show pagination to navigate through results",
       order: 2,
       section: "Options",
       type: "boolean"
-    },
-
+    }
   },
 
   /**
