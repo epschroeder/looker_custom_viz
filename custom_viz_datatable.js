@@ -14,24 +14,24 @@ const customVizDataTable = {
 
   options: {
     // Plot
-    showSearch: {
-      default: false,
-      label: "Show Searchbar",
+    showSearchBar: {
+      default: true,
+      label: "Show Search Bar",
       order: 1,
       section: "Plot",
       type: "boolean"
     },
     showPagination: {
-      default: false,
+      default: true,
       label: "Show Pagination",
       order: 2,
       section: "Plot",
       type: "boolean"
     },
     showRowNumbers: {
-      default: false,
+      default: true,
       label: "Show Row Numbers",
-      order: 2,
+      order: 3,
       section: "Plot",
       type: "boolean"
     },
@@ -48,6 +48,21 @@ const customVizDataTable = {
       label: "Show Full Field Name",
       order: 2,
       section: "Series",
+      type: "boolean"
+    },
+    // STYLING
+    showTableBorder: {
+      default: true,
+      label: "Show Table Border",
+      order: 1,
+      section: "Styling",
+      type: "boolean"
+    },
+    stripedRows: {
+      default: false,
+      label: "Striped Rows",
+      order: 2,
+      section: "Styling",
       type: "boolean"
     }
   },
@@ -130,19 +145,27 @@ const customVizDataTable = {
     }
 
     var html =
-      '<table id="example" class="table table-striped table-bordered" style="width:100%"></table>';
+      '<table id="lookerDataTable" class="table table-striped table-bordered" style="width:100%"></table>';
     // Insert the generated html into the page
     this._vizContainer.innerHTML = html;
 
     $(document).ready(function() {
       //console.log(data);
-      $("#example").DataTable({
-        searching: config.showSearch,
+      $("#lookerDataTable").DataTable({
+        searching: config.showSearchBar,
         paging: config.showPagination,
         data: dataArr,
         columns: headerArr
       });
     });
+
+    // Show or hide the table border
+    if (config.showTableBorder == true) {
+      $("#lookerDataTable").addClass("table-bordered");
+    } else {
+      $("#lookerDataTable").removeClass("table-bordered");
+    }
+
     doneRendering();
   }
 };
