@@ -106,8 +106,8 @@ const customVizDataTable = {
     $(document).ready(function() {
       //console.log(data);
       $("#example").DataTable({
-        searching: true,
-        paging: true,
+        searching: config.showSearch,
+        paging: config.showPagination,
         data: dataArr,
         columns: headerArr
       });
