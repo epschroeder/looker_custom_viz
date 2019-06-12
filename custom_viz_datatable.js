@@ -21,7 +21,7 @@ const customVizDataTable = {
   create: function(element, config) {
     // Insert DataTables css file
     element.innerHTML =
-      '<link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">';
+      '<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4-4.1.1/jq-3.3.1/dt-1.10.18/datatables.min.css"/>';
 
     // Create a container element to let us center the text.
     this._vizContainer = element.appendChild(document.createElement("div"));
@@ -43,7 +43,10 @@ const customVizDataTable = {
     this.clearErrors();
 
     // Throw some errors and exit if the shape of the data isn't what this chart needs
-    if (queryResponse.fields.dimensions.length == 0 && queryResponse.fields.measures.length == 0) {
+    if (
+      queryResponse.fields.dimensions.length == 0 &&
+      queryResponse.fields.measures.length == 0
+    ) {
       this.addError({
         title: "No Fields",
         message: "This chart requires at least one dimension or measure."
@@ -51,46 +54,29 @@ const customVizDataTable = {
       return;
     }
 
-    // Grab the first cell of the data
-    // var first_row = data[0];
+    var dataArr = [];
+    var headerArr = [];
+    var counter = 0;
 
-    // Grab first column
-    // var cell1 = first_row[queryResponse.fields.dimensions[0].name];
-
-    // Grab second column
-    // var cell2 = first_row[queryResponse.fields.dimensions[1].name];
-
-    // Insert the data into table elements
-    // var html = "<tr>";
-    // html += "<td>" + LookerCharts.Utils.htmlForCell(title) + "</td>";
-    // html += "<td>" + LookerCharts.Utils.htmlForCell(paragraph) + "</td>";
-    // html += "</tr>";
-      
-      var dataArr = [];
-      var headerArr = [];
-      var counter = 0;
-      
-      for (let i = 0; i < data.length; i++) {
-        var row = data[i];
-        var rowData = [];
-        for (var key in row) {
-          //key_new = key.replace('.','_');  
-          rowData.push(row[key].value);
-          if (i == 0){
-        headerArr.push({"title":key}) ;
-          }
+    for (let i = 0; i < data.length; i++) {
+      var row = data[i];
+      var rowData = [];
+      for (var key in row) {
+        //key_new = key.replace('.','_');
+        rowData.push(row[key].value);
+        if (i == 0) {
+          headerArr.push({ title: key });
         }
-        dataArr.push(rowData);
       }
-      //dataArr = JSON.stringify(dataArr);
-      //console.log(headerArr);
-      //alert(dataArr);
-      
-    var html =
-      '<table id="example"></table>';
+      dataArr.push(rowData);
+    }
+    //dataArr = JSON.stringify(dataArr);
+    //console.log(headerArr);
+    //alert(dataArr);
+
+    var html = '<table id="example"></table>';
     // Insert the generated html into the page
     this._vizContainer.innerHTML = html;
-  
 
     $(document).ready(function() {
       //console.log(data);
@@ -99,10 +85,9 @@ const customVizDataTable = {
         paging: true,
         data: dataArr,
         columns: headerArr
-        
       });
     });
-      doneRendering();
+    doneRendering();
   }
 };
 
