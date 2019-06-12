@@ -12,7 +12,23 @@ const customVizDataTable = {
    *
    **/
 
-  options: {},
+  options: {
+    showSearch {
+      default: false,
+      label: "Show searchbar to search results",
+      order: 1,
+      section: "Options",
+      type: "boolean"
+    },
+    showPagination {
+      default: false,
+      label: "Show pagination to navigate through results",
+      order: 2,
+      section: "Options",
+      type: "boolean"
+    },
+
+  },
 
   /**
    * The create function gets called when the visualization is mounted but before any
@@ -83,7 +99,8 @@ const customVizDataTable = {
       dataArr.push(rowData);
     }
 
-    var html = '<table id="example" class="table table-striped table-bordered" style="width:100%"></table>';
+    var html =
+      '<table id="example" class="table table-striped table-bordered" style="width:100%"></table>';
     // Insert the generated html into the page
     this._vizContainer.innerHTML = html;
 
