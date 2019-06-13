@@ -123,7 +123,7 @@ const customVizDataTable = {
             if (queryResponse.fields.dimension_like[x]["name"] == key) {
               var label = queryResponse.fields.dimension_like[x].label;
               var labelShort =
-                queryResponse.fields.dimension_like[x].labelShort;
+                queryResponse.fields.dimension_like[x].label_short;
               var type = queryResponse.fields.dimension_like[x].type;
               if (queryResponse.fields.dimension_like[x].sorted) {
                 var orderDirection = "";
@@ -146,7 +146,7 @@ const customVizDataTable = {
           for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
             if (queryResponse.fields.measure_like[x]["name"] == key) {
               var label = queryResponse.fields.measure_like[x].label;
-              var labelShort = queryResponse.fields.measure_like[x].labelShort;
+              var labelShort = queryResponse.fields.measure_like[x].label_short;
               var type = queryResponse.fields.measure_like[x].type;
               if (queryResponse.fields.measure_like[x].sorted) {
                 var orderDirection = "";
