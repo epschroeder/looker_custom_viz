@@ -14,6 +14,7 @@
  *
  * TODO:
  *
+ * Add Table Calculations
  * Conditional Formatting
  * Sort order for multpiple columns
  * Pivot
@@ -192,7 +193,7 @@ const customVizDataTable = {
               title: columnTitle,
               type: type,
               sClass: "text-right",
-              render: $.fn.dataTable.render.number(",", ".", 2, "$")
+              render: $.fn.dataTable.render.number(",", ".", 0, "")
             });
           } else {
             headerArr.push({ title: columnTitle, type: type });
