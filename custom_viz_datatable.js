@@ -165,11 +165,11 @@ const customVizDataTable = {
             columnCounter++;
           }
           if (config.showFullFieldName == false) {
-            var column_title = label_short;
+            var columnTitle = labelShort;
           } else {
-            var column_title = label;
+            var columnTitle = label;
           }
-          headerArr.push({ title: column_title, type: type });
+          headerArr.push({ title: columnTitle, type: type });
         }
       }
       dataArr.push(rowData);
