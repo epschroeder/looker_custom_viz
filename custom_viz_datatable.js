@@ -36,17 +36,10 @@ const customVizDataTable = {
       type: "boolean"
     },
     // SERIES
-    truncateColumnNames: {
-      default: false,
-      label: "Truncate Column Names",
-      order: 1,
-      section: "Series",
-      type: "boolean"
-    },
     showFullFieldName: {
       default: true,
       label: "Show Full Field Name",
-      order: 2,
+      order: 1,
       section: "Series",
       type: "boolean"
     },
@@ -59,7 +52,7 @@ const customVizDataTable = {
       type: "boolean"
     },
     stripedRows: {
-      default: false,
+      default: true,
       label: "Striped Rows",
       order: 2,
       section: "Styling",
@@ -203,6 +196,18 @@ const customVizDataTable = {
     } else {
       $("#lookerDataTable").removeClass("table-striped");
     }
+    // Create an option for each measure in your query
+    queryResponse.fields.measure_like.forEach(function(field) {
+      id = "color_" + field.name;
+      options[id] = {
+        label: field.label_short + " Color",
+        default: "#8B7DA8",
+        section: "Series",
+        type: "string",
+        display: "color"
+      };
+    });
+    this.trigger("registerOptions", options); // register options with parent page to update visConfig
 
     doneRendering();
   }
