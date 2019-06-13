@@ -181,7 +181,12 @@ const customVizDataTable = {
           } else {
             var columnTitle = label;
           }
-          if (type == "number") {
+          if (
+            type == "count" ||
+            type == "count_distinct" ||
+            type == "sum" ||
+            type == "sum_distinct"
+          ) {
             type = "num";
             headerArr.push({
               title: columnTitle,
