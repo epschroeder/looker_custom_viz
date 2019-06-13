@@ -178,9 +178,14 @@ const customVizDataTable = {
       $("#lookerDataTable").DataTable({
         searching: config.showSearchBar,
         paging: config.showPagination,
+        info: config.showPagination,
         data: dataArr,
         columns: headerArr,
-        order: sortArr
+        order: sortArr,
+        fixedHeader: {
+          header: true,
+          footer: true
+        }
       });
     });
 
@@ -196,18 +201,6 @@ const customVizDataTable = {
     } else {
       $("#lookerDataTable").removeClass("table-striped");
     }
-    // Create an option for each measure in your query
-    queryResponse.fields.measure_like.forEach(function(field) {
-      id = "color_" + field.name;
-      options[id] = {
-        label: field.label_short + " Color",
-        default: "#8B7DA8",
-        section: "Series",
-        type: "string",
-        display: "color"
-      };
-    });
-    this.trigger("registerOptions", options); // register options with parent page to update visConfig
 
     doneRendering();
   }
