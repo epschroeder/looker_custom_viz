@@ -3,7 +3,25 @@
  *
  * It's a table visualization based on the DataTables.js library
  *
- * Created by: Egbert Schroeder
+ * CREATED BY: Egbert Schroeder
+ *
+ * DEPENDENCIES:
+ *
+ * https://code.jquery.com/jquery-3.3.1.js
+ * https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js
+ * https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js
+ * https://cdn.datatables.net/fixedheader/3.1.4/js/dataTables.fixedHeader.min.js
+ *
+ * TODO:
+ *
+ * Conditional Formatting
+ * Sort order for multpiple columns
+ * Pivot
+ * Totals
+ * Row Totals
+ * Row Numbers
+ * Add Options: Series name override, Font Size, Cell Padding, Fixed Header, Fixed Footer, Conditional Formatting
+ *
  **/
 
 const customVizDataTable = {
@@ -163,7 +181,17 @@ const customVizDataTable = {
           } else {
             var columnTitle = label;
           }
-          headerArr.push({ title: columnTitle, type: type });
+          if (type == "number") {
+            type = "num";
+            headerArr.push({
+              title: columnTitle,
+              type: type,
+              sClass: "text-right",
+              render: $.fn.dataTable.render.number(",", ".", 2, "$")
+            });
+          } else {
+            headerArr.push({ title: columnTitle, type: type });
+          }
         }
       }
       dataArr.push(rowData);
