@@ -164,7 +164,12 @@ const customVizDataTable = {
             }
             columnCounter++;
           }
-          headerArr.push({ title: label, type: type });
+          if (config.showFullFieldName == false) {
+            var column_title = label_short;
+          } else {
+            var column_title = label;
+          }
+          headerArr.push({ title: column_title, type: type });
         }
       }
       dataArr.push(rowData);
