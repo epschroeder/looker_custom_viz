@@ -14,9 +14,9 @@
  *
  * TODO:
  *
- * Add Table Calculations
+ * Add Table Calculations - TESTING
  * Conditional Formatting
- * Sort order for multpiple columns
+ * Sort order for multpiple columns - TESTTING
  * Pivot
  * Totals
  * Row Totals
@@ -121,9 +121,10 @@ const customVizDataTable = {
       return;
     }
 
-    var dataArr = [];
-    var headerArr = [];
-    var sortArr = [];
+    var dataArray = [];
+    var headerArray = [];
+    var sortArray = [];
+    var sortsArray = queryResponse.sorts;
 
     for (let i = 0; i < data.length; i++) {
       var row = data[i];
@@ -132,75 +133,94 @@ const customVizDataTable = {
         rowData.push(row[key].value);
         if (i == 0) {
           columnCounter = 0;
+          // Add Dimensions
           for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
             if (queryResponse.fields.dimension_like[x]["name"] == key) {
               var label = queryResponse.fields.dimension_like[x].label;
               var labelShort =
-                queryResponse.fields.dimension_like[x].label_short;
+                queryResponse.fields.dimension_like[x].labelShort;
               var type = queryResponse.fields.dimension_like[x].type;
-              if (queryResponse.fields.dimension_like[x].sorted) {
+              var sortObj = sortsArray.find(
+                sortObj =>
+                  sortObj.name == queryResponse.fields.dimension_like[x]["name"]
+              );
+
+              if (sortObj) {
                 var orderDirection = "";
-                if (
-                  queryResponse.fields.dimension_like[x].sorted.desc == true
-                ) {
+                if (sortObj.desc == true) {
                   orderDirection = "desc";
-                } else if (
-                  queryResponse.fields.dimension_like[x].sorted.desc == false
-                ) {
+                } else if (sortObj.desc == false) {
                   orderDirection = "asc";
                 } else {
                   orderDirection = null;
                 }
-                sortArr.push([columnCounter, orderDirection]);
+                sortArray[sortObj.column] = [columnCounter, orderDirection];
               }
             }
             columnCounter++;
           }
+          // Add Measures
           for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
             if (queryResponse.fields.measure_like[x]["name"] == key) {
               var label = queryResponse.fields.measure_like[x].label;
-              var labelShort = queryResponse.fields.measure_like[x].label_short;
+              var labelShort = queryResponse.fields.measure_like[x].labelShort;
               var type = queryResponse.fields.measure_like[x].type;
-              if (queryResponse.fields.measure_like[x].sorted) {
+
+              var sortObj = sortsArray.find(
+                sortObj =>
+                  sortObj.name == queryResponse.fields.measure_like[x]["name"]
+              );
+
+              if (sortObj) {
                 var orderDirection = "";
-                if (queryResponse.fields.measure_like[x].sorted.desc == true) {
+                if (sortObj.desc == true) {
                   orderDirection = "desc";
-                } else if (
-                  queryResponse.fields.measure_like[x].sorted.desc == false
-                ) {
+                } else if (sortObj.desc == false) {
                   orderDirection = "asc";
                 } else {
                   orderDirection = null;
                 }
-                sortArr.push([columnCounter, orderDirection]);
+                sortArray[sortObj.column] = [columnCounter, orderDirection];
               }
             }
             columnCounter++;
           }
-          if (config.showFullFieldName == false) {
-            var columnTitle = labelShort;
-          } else {
-            var columnTitle = label;
-          }
-          if (
-            type == "count" ||
-            type == "count_distinct" ||
-            type == "sum" ||
-            type == "sum_distinct"
+          // Add Table Calculations
+          for (
+            var x = 0;
+            x < queryResponse.fields.table_calculations.length;
+            x++
           ) {
-            type = "num";
-            headerArr.push({
-              title: columnTitle,
-              type: type,
-              sClass: "text-right",
-              render: $.fn.dataTable.render.number(",", ".", 0, "")
-            });
-          } else {
-            headerArr.push({ title: columnTitle, type: type });
+            if (queryResponse.fields.table_calculations[x]["name"] == key) {
+              var label = queryResponse.fields.table_calculations[x].label;
+              var labelShort =
+                queryResponse.fields.table_calculations[x].labelShort;
+              var type = queryResponse.fields.table_calculations[x].type;
+
+              var sortObj = sortsArray.find(
+                sortObj =>
+                  sortObj.name ==
+                  queryResponse.fields.table_calculations[x]["name"]
+              );
+
+              if (sortObj) {
+                var orderDirection = "";
+                if (sortObj.desc == true) {
+                  orderDirection = "desc";
+                } else if (sortObj.desc == false) {
+                  orderDirection = "asc";
+                } else {
+                  orderDirection = null;
+                }
+                sortArray[sortObj.column] = [columnCounter, orderDirection];
+              }
+            }
+            columnCounter++;
           }
+          headerArray.push({ title: label, type: type });
         }
       }
-      dataArr.push(rowData);
+      dataArray.push(rowData);
     }
 
     var html =
