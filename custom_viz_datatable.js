@@ -234,9 +234,9 @@ const customVizDataTable = {
         searching: config.showSearchBar,
         paging: config.showPagination,
         info: config.showPagination,
-        data: dataArr,
-        columns: headerArr,
-        order: sortArr,
+        data: dataArray,
+        columns: headerArray,
+        order: sortArray,
         fixedHeader: {
           header: true,
           footer: true
