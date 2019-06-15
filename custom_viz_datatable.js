@@ -259,6 +259,29 @@ const customVizDataTable = {
               }
             }
             columnCounter++;
+            if (config.showFullFieldName == false) {
+              var columnTitle = labelShort;
+            } else {
+              var columnTitle = label;
+            }
+            if (type == "number") {
+              if (
+                type == "count" ||
+                type == "count_distinct" ||
+                type == "sum" ||
+                type == "sum_distinct"
+              ) {
+                type = "num";
+                headerArray.push({
+                  title: columnTitle,
+                  type: type,
+                  sClass: "text-right",
+                  render: $.fn.dataTable.render.number(",", ".", 2, "$")
+                });
+              } else {
+                headerArray.push({ title: columnTitle, type: type });
+              }
+            }
           }
           // Add Measures
           for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
@@ -285,6 +308,29 @@ const customVizDataTable = {
               }
             }
             columnCounter++;
+            if (config.showFullFieldName == false) {
+              var columnTitle = labelShort;
+            } else {
+              var columnTitle = label;
+            }
+            if (type == "number") {
+              if (
+                type == "count" ||
+                type == "count_distinct" ||
+                type == "sum" ||
+                type == "sum_distinct"
+              ) {
+                type = "num";
+                headerArray.push({
+                  title: columnTitle,
+                  type: type,
+                  sClass: "text-right",
+                  render: $.fn.dataTable.render.number(",", ".", 2, "$")
+                });
+              } else {
+                headerArray.push({ title: columnTitle, type: type });
+              }
+            }
           }
           // Add Table Calculations
           for (
@@ -317,28 +363,29 @@ const customVizDataTable = {
               }
             }
             columnCounter++;
-          }
-          if (config.showFullFieldName == false) {
-            var columnTitle = labelShort;
-          } else {
-            var columnTitle = label;
-          }
-          if (type == "number") {
-            if (
-              type == "count" ||
-              type == "count_distinct" ||
-              type == "sum" ||
-              type == "sum_distinct"
-            ) {
-              type = "num";
-              headerArray.push({
-                title: columnTitle,
-                type: type,
-                sClass: "text-right",
-                render: $.fn.dataTable.render.number(",", ".", 2, "$")
-              });
+
+            if (config.showFullFieldName == false) {
+              var columnTitle = labelShort;
             } else {
-              headerArray.push({ title: columnTitle, type: type });
+              var columnTitle = label;
+            }
+            if (type == "number") {
+              if (
+                type == "count" ||
+                type == "count_distinct" ||
+                type == "sum" ||
+                type == "sum_distinct"
+              ) {
+                type = "num";
+                headerArray.push({
+                  title: columnTitle,
+                  type: type,
+                  sClass: "text-right",
+                  render: $.fn.dataTable.render.number(",", ".", 2, "$")
+                });
+              } else {
+                headerArray.push({ title: columnTitle, type: type });
+              }
             }
           }
         }
