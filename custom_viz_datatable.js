@@ -357,8 +357,6 @@ const customVizDataTable = {
                         cell.innerHTML = i + 1;
                     });
                 }).draw();
-            } else {
-                table.
             }
 
             // Show or hide the table border
