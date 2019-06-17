@@ -14,14 +14,19 @@
  *
  * TODO:
  *
- * Add Table Calculations
- * Conditional Formatting
- * Sort order for multpiple columns
- * Pivot
- * Totals
- * Row Totals
- * Row Numbers
- * Add Options: Series name override, Font Size, Cell Padding, Fixed Header, Fixed Footer, Conditional Formatting
+ * [ ] Add Table Calculations
+ * [ ] Conditional Formatting
+ * [ ] Sort order for multpiple columns
+ * [ ] Pivot
+ * [ ] Totals
+ * [ ] Row Totals
+ * [ ] Row Numbers
+ * [ ] Add Option: Series name override
+ * [ ] Add Option: Font Size
+ * [ ] Add Option: Cell Padding
+ * [ ] Add Option: Fixed Header
+ * [ ] Add Option: Fixed Footer
+ * [ ] Add Option: Conditional Formatting
  *
  **/
 
@@ -32,53 +37,150 @@ const customVizDataTable = {
      **/
 
     options: {
-        // Plot
-        showSearchBar: {
-            default: true,
-            label: "Show Search Bar",
-            order: 1,
-            section: "Plot",
-            type: "boolean"
-        },
-        showPagination: {
-            default: true,
-            label: "Show Pagination",
-            order: 2,
-            section: "Plot",
-            type: "boolean"
-        },
-        showRowNumbers: {
-            default: true,
-            label: "Show Row Numbers",
-            order: 3,
-            section: "Plot",
-            type: "boolean"
-        },
-        // SERIES
-        showFullFieldName: {
-            default: true,
-            label: "Show Full Field Name",
-            order: 1,
-            section: "Series",
-            type: "boolean"
-        },
-        // STYLING
-        showTableBorder: {
-            default: true,
-            label: "Show Table Border",
-            order: 1,
-            section: "Styling",
-            type: "boolean"
-        },
-        stripedRows: {
-            default: true,
-            label: "Striped Rows",
-            order: 2,
-            section: "Styling",
-            type: "boolean"
-        }
+        // FORMATTING
+    enableConditionalFormatting: {
+      default: false,
+      label: "Enable Conditional Formatting",
+      order: 1,
+      section: "Formatting",
+      type: "boolean"
     },
-
+    perColumnRange: {
+      default: true,
+      hidden: true,
+      label: "Per column range",
+      order: 2,
+      section: "Formatting",
+      type: "boolean"
+    },
+    conditionalFormattingType: {
+      default: "all",
+      display: "select",
+      label: "Formatting Type",
+      order: 3,
+      section: "Formatting",
+      type: "string",
+      values: [
+        { All: "all" },
+        { "Subtotals only": "subtotals_only" },
+        { "Non-subtotals only": "non_subtotals_only" }
+      ]
+    },
+    includeNullValuesAsZero: {
+      default: false,
+      label: "Include Null Values as Zero",
+      order: 4,
+      section: "Formatting",
+      type: "boolean"
+    },
+    formattingStyle: {
+      default: "low_to_high",
+      display: "select",
+      label: "Format",
+      order: 5,
+      section: "Formatting",
+      type: "string",
+      values: [
+        { "From low to high": "low_to_high" },
+        { "From high to low": "high_to_low" }
+      ]
+    },
+    formattingPalette: {
+      default: "red_yellow_green",
+      display: "select",
+      label: "Palette",
+      order: 6,
+      section: "Formatting",
+      type: "string",
+      values: [
+        { "Red to Yellow to Green": "red_yellow_green" },
+        { "Red to White to Green": "red_white_green" },
+        { "Red to White": "red_white" },
+        { "White to Green": "white_green" },
+        { "Custom...": "custom" }
+      ]
+    },
+    lowColor: {
+      display: "color",
+      display_size: "third",
+      label: "Low", // These values updated in updateAsync
+      order: 7,
+      section: "Formatting",
+      type: "string"
+    },
+    midColor: {
+      display: "color",
+      display_size: "third",
+      label: "Middle",
+      order: 8,
+      section: "Formatting",
+      type: "string"
+    },
+    highColor: {
+      display: "color",
+      display_size: "third",
+      label: "High",
+      order: 9,
+      section: "Formatting",
+      type: "string"
+    },
+    applyTo: {
+      default: "all_numeric_fields",
+      display: "select",
+      label: "Apply to",
+      order: 10,
+      section: "Formatting",
+      type: "string",
+      values: [
+        { "All numeric fields": "all_numeric_fields" },
+        { "Select fields...": "select_fields" }
+      ]
+    },
+    // SERIES
+    showFullFieldName: {
+      default: true,
+      label: "Show Full Field Name",
+      order: 1,
+      section: "Series",
+      type: "boolean"
+    },
+    // PLOT
+    showSearchBar: {
+      default: false,
+      label: "Show Search Bar",
+      order: 1,
+      section: "Plot",
+      type: "boolean"
+    },
+    showPagination: {
+      default: false,
+      label: "Show Pagination",
+      order: 2,
+      section: "Plot",
+      type: "boolean"
+    },
+    showTableBorder: {
+      default: true,
+      label: "Show Table Border",
+      order: 1,
+      section: "Plot",
+      type: "boolean"
+    },
+    stripedRows: {
+      default: true,
+      label: "Striped Rows",
+      order: 2,
+      section: "Plot",
+      type: "boolean"
+    },
+    showRowNumbers: {
+      default: false,
+      label: "Show Row Numbers (wip)",
+      order: 3,
+      section: "Plot",
+      type: "boolean"
+    }
+  },
     /**
      * The create function gets called when the visualization is mounted but before any
      * data is passed to it.
