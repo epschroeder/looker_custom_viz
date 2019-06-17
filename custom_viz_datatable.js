@@ -196,7 +196,7 @@ const customVizDataTable = {
                             render: $.fn.dataTable.render.number(",", ".", 0, "")
                         });
                     } else {
-                        headerArr.push({ title: columnTitle, type: type });
+                        headerArray.push({ title: columnTitle, type: type });
                     }
                 }
             }
