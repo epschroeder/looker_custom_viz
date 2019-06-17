@@ -14,9 +14,9 @@
  *
  * TODO:
  *
- * Add Table Calculations - TESTING
+ * Add Table Calculations
  * Conditional Formatting
- * Sort order for multpiple columns - TESTTING
+ * Sort order for multpiple columns
  * Pivot
  * Totals
  * Row Totals
@@ -34,36 +34,22 @@ const customVizDataTable = {
   options: {
     // Plot
     showSearchBar: {
-      default: false,
+      default: true,
       label: "Show Search Bar",
       order: 1,
       section: "Plot",
       type: "boolean"
     },
     showPagination: {
-      default: false,
+      default: true,
       label: "Show Pagination",
       order: 2,
       section: "Plot",
       type: "boolean"
     },
-    showTableBorder: {
-      default: true,
-      label: "Show Table Border",
-      order: 1,
-      section: "Plot",
-      type: "boolean"
-    },
-    stripedRows: {
-      default: true,
-      label: "Striped Rows",
-      order: 2,
-      section: "Plot",
-      type: "boolean"
-    },
     showRowNumbers: {
-      default: false,
-      label: "Show Row Numbers (wip)",
+      default: true,
+      label: "Show Row Numbers",
       order: 3,
       section: "Plot",
       type: "boolean"
@@ -76,104 +62,20 @@ const customVizDataTable = {
       section: "Series",
       type: "boolean"
     },
-    // FORMATTING
-    enableConditionalFormatting: {
-      default: false,
-      label: "Enable Conditional Formatting",
-      order: 1,
-      section: "Formatting",
-      type: "boolean"
-    },
-    perColumnRange: {
+    // STYLING
+    showTableBorder: {
       default: true,
-      hidden: true,
-      label: "Per column range",
+      label: "Show Table Border",
+      order: 1,
+      section: "Styling",
+      type: "boolean"
+    },
+    stripedRows: {
+      default: true,
+      label: "Striped Rows",
       order: 2,
-      section: "Formatting",
+      section: "Styling",
       type: "boolean"
-    },
-    conditionalFormattingType: {
-      default: "all",
-      display: "select",
-      label: "Formatting Type",
-      order: 3,
-      section: "Formatting",
-      type: "string",
-      values: [
-        { All: "all" },
-        { "Subtotals only": "subtotals_only" },
-        { "Non-subtotals only": "non_subtotals_only" }
-      ]
-    },
-    includeNullValuesAsZero: {
-      default: false,
-      label: "Include Null Values as Zero",
-      order: 4,
-      section: "Formatting",
-      type: "boolean"
-    },
-    formattingStyle: {
-      default: "low_to_high",
-      display: "select",
-      label: "Format",
-      order: 5,
-      section: "Formatting",
-      type: "string",
-      values: [
-        { "From low to high": "low_to_high" },
-        { "From high to low": "high_to_low" }
-      ]
-    },
-    formattingPalette: {
-      default: "red_yellow_green",
-      display: "select",
-      label: "Palette",
-      order: 6,
-      section: "Formatting",
-      type: "string",
-      values: [
-        { "Red to Yellow to Green": "red_yellow_green" },
-        { "Red to White to Green": "red_white_green" },
-        { "Red to White": "red_white" },
-        { "White to Green": "white_green" },
-        { "Custom...": "custom" }
-      ]
-    },
-    lowColor: {
-      display: "color",
-      display_size: "third",
-      label: "Low", // These values updated in updateAsync
-      order: 7,
-      section: "Formatting",
-      type: "string"
-    },
-    midColor: {
-      display: "color",
-      display_size: "third",
-      label: "Middle",
-      order: 8,
-      section: "Formatting",
-      type: "string"
-    },
-    highColor: {
-      display: "color",
-      display_size: "third",
-      label: "High",
-      order: 9,
-      section: "Formatting",
-      type: "string"
-    },
-    applyTo: {
-      default: "all_numeric_fields",
-      display: "select",
-      label: "Apply to",
-      order: 10,
-      section: "Formatting",
-      type: "string",
-      values: [
-        { "All numeric fields": "all_numeric_fields" },
-        { "Select fields...": "select_fields" }
-      ]
     }
   },
 
@@ -186,10 +88,7 @@ const customVizDataTable = {
     element.innerHTML =
       '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" />\
       <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />\
-      <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.4/css/fixedHeader.bootstrap4.min.css" />\
-      <style>\
-      .dt_font_12px\
-      </style>';
+      <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.4/css/fixedHeader.bootstrap4.min.css" />';
 
     // Create a container element to let us center the text.
     this._vizContainer = element.appendChild(document.createElement("div"));
@@ -222,10 +121,9 @@ const customVizDataTable = {
       return;
     }
 
-    var dataArray = [];
-    var headerArray = [];
-    var sortArray = [];
-    var sortsArray = queryResponse.sorts;
+    var dataArr = [];
+    var headerArr = [];
+    var sortArr = [];
 
     for (let i = 0; i < data.length; i++) {
       var row = data[i];
@@ -234,163 +132,75 @@ const customVizDataTable = {
         rowData.push(row[key].value);
         if (i == 0) {
           columnCounter = 0;
-          // Add Dimensions
           for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
             if (queryResponse.fields.dimension_like[x]["name"] == key) {
               var label = queryResponse.fields.dimension_like[x].label;
               var labelShort =
-                queryResponse.fields.dimension_like[x].labelShort;
+                queryResponse.fields.dimension_like[x].label_short;
               var type = queryResponse.fields.dimension_like[x].type;
-              var sortObj = sortsArray.find(
-                sortObj =>
-                  sortObj.name == queryResponse.fields.dimension_like[x]["name"]
-              );
-
-              if (sortObj) {
+              if (queryResponse.fields.dimension_like[x].sorted) {
                 var orderDirection = "";
-                if (sortObj.desc == true) {
+                if (
+                  queryResponse.fields.dimension_like[x].sorted.desc == true
+                ) {
                   orderDirection = "desc";
-                } else if (sortObj.desc == false) {
+                } else if (
+                  queryResponse.fields.dimension_like[x].sorted.desc == false
+                ) {
                   orderDirection = "asc";
                 } else {
                   orderDirection = null;
                 }
-                sortArray[sortObj.column] = [columnCounter, orderDirection];
+                sortArr.push([columnCounter, orderDirection]);
               }
             }
             columnCounter++;
-            if (config.showFullFieldName == false) {
-              var columnTitle = labelShort;
-            } else {
-              var columnTitle = label;
-            }
-            if (type == "number") {
-              if (
-                type == "count" ||
-                type == "count_distinct" ||
-                type == "sum" ||
-                type == "sum_distinct"
-              ) {
-                type = "num";
-                headerArray.push({
-                  title: columnTitle,
-                  type: type,
-                  sClass: "text-right",
-                  render: $.fn.dataTable.render.number(",", ".", 2, "$")
-                });
-              } else {
-                headerArray.push({ title: columnTitle, type: type });
-              }
-            }
           }
-          // Add Measures
           for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
             if (queryResponse.fields.measure_like[x]["name"] == key) {
               var label = queryResponse.fields.measure_like[x].label;
-              var labelShort = queryResponse.fields.measure_like[x].labelShort;
+              var labelShort = queryResponse.fields.measure_like[x].label_short;
               var type = queryResponse.fields.measure_like[x].type;
-
-              var sortObj = sortsArray.find(
-                sortObj =>
-                  sortObj.name == queryResponse.fields.measure_like[x]["name"]
-              );
-
-              if (sortObj) {
+              if (queryResponse.fields.measure_like[x].sorted) {
                 var orderDirection = "";
-                if (sortObj.desc == true) {
+                if (queryResponse.fields.measure_like[x].sorted.desc == true) {
                   orderDirection = "desc";
-                } else if (sortObj.desc == false) {
+                } else if (
+                  queryResponse.fields.measure_like[x].sorted.desc == false
+                ) {
                   orderDirection = "asc";
                 } else {
                   orderDirection = null;
                 }
-                sortArray[sortObj.column] = [columnCounter, orderDirection];
+                sortArr.push([columnCounter, orderDirection]);
               }
             }
             columnCounter++;
-            if (config.showFullFieldName == false) {
-              var columnTitle = labelShort;
-            } else {
-              var columnTitle = label;
-            }
-            if (type == "number") {
-              if (
-                type == "count" ||
-                type == "count_distinct" ||
-                type == "sum" ||
-                type == "sum_distinct"
-              ) {
-                type = "num";
-                headerArray.push({
-                  title: columnTitle,
-                  type: type,
-                  sClass: "text-right",
-                  render: $.fn.dataTable.render.number(",", ".", 2, "$")
-                });
-              } else {
-                headerArray.push({ title: columnTitle, type: type });
-              }
-            }
           }
-          // Add Table Calculations
-          for (
-            var x = 0;
-            x < queryResponse.fields.table_calculations.length;
-            x++
+          if (config.showFullFieldName == false) {
+            var columnTitle = labelShort;
+          } else {
+            var columnTitle = label;
+          }
+          if (
+            type == "count" ||
+            type == "count_distinct" ||
+            type == "sum" ||
+            type == "sum_distinct"
           ) {
-            if (queryResponse.fields.table_calculations[x]["name"] == key) {
-              var label = queryResponse.fields.table_calculations[x].label;
-              var labelShort =
-                queryResponse.fields.table_calculations[x].labelShort;
-              var type = queryResponse.fields.table_calculations[x].type;
-
-              var sortObj = sortsArray.find(
-                sortObj =>
-                  sortObj.name ==
-                  queryResponse.fields.table_calculations[x]["name"]
-              );
-
-              if (sortObj) {
-                var orderDirection = "";
-                if (sortObj.desc == true) {
-                  orderDirection = "desc";
-                } else if (sortObj.desc == false) {
-                  orderDirection = "asc";
-                } else {
-                  orderDirection = null;
-                }
-                sortArray[sortObj.column] = [columnCounter, orderDirection];
-              }
-            }
-            columnCounter++;
-
-            if (config.showFullFieldName == false) {
-              var columnTitle = labelShort;
-            } else {
-              var columnTitle = label;
-            }
-            if (type == "number") {
-              if (
-                type == "count" ||
-                type == "count_distinct" ||
-                type == "sum" ||
-                type == "sum_distinct"
-              ) {
-                type = "num";
-                headerArray.push({
-                  title: columnTitle,
-                  type: type,
-                  sClass: "text-right",
-                  render: $.fn.dataTable.render.number(",", ".", 2, "$")
-                });
-              } else {
-                headerArray.push({ title: columnTitle, type: type });
-              }
-            }
+            type = "num";
+            headerArr.push({
+              title: columnTitle,
+              type: type,
+              sClass: "text-right",
+              render: $.fn.dataTable.render.number(",", ".", 0, "")
+            });
+          } else {
+            headerArr.push({ title: columnTitle, type: type });
           }
         }
       }
-      dataArray.push(rowData);
+      dataArr.push(rowData);
     }
 
     var html =
@@ -404,9 +214,9 @@ const customVizDataTable = {
         searching: config.showSearchBar,
         paging: config.showPagination,
         info: config.showPagination,
-        data: dataArray,
-        columns: headerArray,
-        order: sortArray,
+        data: dataArr,
+        columns: headerArr,
+        order: sortArr,
         fixedHeader: {
           header: true,
           footer: true
