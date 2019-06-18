@@ -352,11 +352,10 @@ const customVizDataTable = {
 
             // Show or hide row numbers
             if (config.showRowNumbers == true) {
-                table.on('order.dt search.dt', function () {
-                    table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
-                        cell.innerHTML = i + 1;
-                    });
-                }).draw();
+                for (var r = 0; r < table.rows.count; r++) {
+                    $("#lookerDataTable thead tr").append("<th></th>");
+                    $("#lookerDataTable tbody tr").append("<td>new column"+r+"</td>");
+                }
             }
 
             // Show or hide the table border
@@ -365,6 +364,7 @@ const customVizDataTable = {
             } else {
                 $("#lookerDataTable").removeClass("table-bordered");
             }
+
             // Show or hide the table border
             if (config.stripedRows == true) {
                 $("#lookerDataTable").addClass("table-striped");
@@ -372,7 +372,6 @@ const customVizDataTable = {
                 $("#lookerDataTable").removeClass("table-striped");
             }
         });
-
 
         doneRendering();
     }
