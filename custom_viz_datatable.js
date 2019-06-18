@@ -146,41 +146,51 @@ const customVizDataTable = {
             type: "boolean"
         },
         // PLOT
+        showRowNumbers: {
+            default: false,
+            label: "Show Row Numbers",
+            order: 1,
+            section: "Plot",
+            type: "boolean"
+        },
         showSearchBar: {
             default: false,
             label: "Show Search Bar",
-            order: 1,
+            order: 2,
             section: "Plot",
             type: "boolean"
         },
         showPagination: {
             default: false,
             label: "Show Pagination",
-            order: 2,
+            order: 3,
             section: "Plot",
             type: "boolean"
         },
         showTableBorder: {
             default: true,
             label: "Show Table Border",
-            order: 3,
+            order: 4,
             section: "Plot",
             type: "boolean"
         },
         stripedRows: {
             default: true,
             label: "Striped Rows",
-            order: 4,
-            section: "Plot",
-            type: "boolean"
-        },
-        showRowNumbers: {
-            default: false,
-            label: "Show Row Numbers",
             order: 5,
             section: "Plot",
             type: "boolean"
-        }
+        },
+        fontSize: {
+            default: 12,
+            display_size: 'third',
+            label: 'Font size',
+            order: 6,
+            section: 'Plot',
+            type: 'number',
+        },
+
+
     },
     /**
      * The create function gets called when the visualization is mounted but before any
@@ -332,7 +342,7 @@ const customVizDataTable = {
         }
 
         var html =
-            '<table id="lookerDataTable" class="table" style="width:100%"></table>';
+            '<table id="lookerDataTable" class="table compact" style="width:100%"></table>';
         // Insert the generated html into the page
         this._vizContainer.innerHTML = html;
 
@@ -355,8 +365,8 @@ const customVizDataTable = {
             if (config.showRowNumbers == true) {
                 $("#lookerDataTable thead tr").prepend("<th></th>");
                 $("#lookerDataTable tbody tr").each((i, tr) => {
-                    i = i+1;
-                    $(tr).prepend('<td>'+i+'</td>')
+                    i = i + 1;
+                    $(tr).prepend('<td>' + i + '</td>')
                 })
             }
 
