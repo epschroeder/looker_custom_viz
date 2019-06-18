@@ -1,9 +1,20 @@
 /**
  * This is a Custom Visualization for Looker
  *
- * It shows the first 2 dimension columns from the fir result as a title and a paragraph
+ * It shows the first 2 dimension columns as a title and a paragraph
  *
- * Created by: Egbert Schroeder
+ * CREATED BY: Egbert Schroeder
+ *
+ * DEPENDENCIES:
+ *
+ *
+ * TODO:
+ *
+ * [ ] Add Title Font Size Option
+ * [ ] Add Paragraph Font Size Option
+ * [ ] Add Limit Displayed Rows Options
+ * [ ] Visualize All Records In Result Table
+ *
  **/
 
 const customVizTextFromData = {

@@ -14,13 +14,14 @@
  *
  * TODO:
  *
- * [ ] Add Table Calculations
+ * [x] Add Table Calculations
  * [ ] Add Conditional Formatting
  * [ ] Add Sort for multpiple columns
  * [ ] Add Pivot Fields
  * [ ] Add Totals
  * [ ] Add Row Totals
- * [o] Row Numbers
+ * [x] Row Numbers
+ * [ ] Insert HTML from LookML when available
  * [ ] Add Option: Series name override
  * [ ] Add Option: Font Size
  * [ ] Add Option: Cell Padding
