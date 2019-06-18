@@ -352,8 +352,9 @@ const customVizDataTable = {
 
             // Show or hide row numbers
             if (config.showRowNumbers == true) {
-                $("#lookerDataTable thead tr").append("<th></th>");
+                $("#lookerDataTable thead tr").prepend("<th></th>");
                 $("#lookerDataTable tbody tr").each((i, tr) => {
+                    i = i+1;
                     $(tr).prepend('<td>'+i+'</td>')
                 })
             }
