@@ -204,11 +204,11 @@ const customVizDataTable = {
                 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.4/css/fixedHeader.bootstrap4.min.css" />\
                 <style>\
                 th {\
-                font-size: ' + config.fontSize + ';\
+                font-size: ' + config.fontSize + 'px;\
                 }\
                 \
                 td {\
-                font-size: ' + config.fontSize + ';\
+                font-size: ' + config.fontSize + 'px;\
                 }\
                 </style > ';
 
