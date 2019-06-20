@@ -252,7 +252,8 @@ const customVizDataTable = {
                 var rowData = [];
 
                 for (var key in row) {
-                    rowData.push(row[key].value);
+                    rowData.push(LookerCharts.Utils.htmlForCell(row[key]);
+
                     if (i == 0) {
                         columnCounter = 0;
                         // ADD DIMENSIONS
