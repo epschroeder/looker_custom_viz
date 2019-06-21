@@ -341,7 +341,7 @@ const customVizDataTable = {
                                 title: columnTitle,
                                 type: type,
                                 sClass: "text-right",
-                                render: $.fn.dataTable.render.number(",", ".", 0, "")
+                                // render: $.fn.dataTable.render.number(",", ".", 0, "")
                             });
                         } else {
                             headerArray.push({title: columnTitle, type: type});
