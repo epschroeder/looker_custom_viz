@@ -38,157 +38,59 @@ const customVizDataTable = {
          **/
 
         options: {
-            // FORMATTING
-            enableConditionalFormatting: {
-                default: false,
-                label: "Enable Conditional Formatting",
-                order: 1,
-                section: "Formatting",
-                type: "boolean"
-            },
-            perColumnRange: {
-                default: true,
-                hidden: true,
-                label: "Per column range",
-                order: 2,
-                section: "Formatting",
-                type: "boolean"
-            },
-            conditionalFormattingType: {
-                default: "all",
-                display: "select",
-                label: "Formatting Type",
-                order: 3,
-                section: "Formatting",
-                type: "string",
-                values: [
-                    {All: "all"},
-                    {"Subtotals only": "subtotals_only"},
-                    {"Non-subtotals only": "non_subtotals_only"}
-                ]
-            },
-            includeNullValuesAsZero: {
-                default: false,
-                label: "Include Null Values as Zero",
-                order: 4,
-                section: "Formatting",
-                type: "boolean"
-            },
-            formattingStyle: {
-                default: "low_to_high",
-                display: "select",
-                label: "Format",
-                order: 5,
-                section: "Formatting",
-                type: "string",
-                values: [
-                    {"From low to high": "low_to_high"},
-                    {"From high to low": "high_to_low"}
-                ]
-            },
-            formattingPalette: {
-                default: "red_yellow_green",
-                display: "select",
-                label: "Palette",
-                order: 6,
-                section: "Formatting",
-                type: "string",
-                values: [
-                    {"Red to Yellow to Green": "red_yellow_green"},
-                    {"Red to White to Green": "red_white_green"},
-                    {"Red to White": "red_white"},
-                    {"White to Green": "white_green"},
-                    {"Custom...": "custom"}
-                ]
-            },
-            lowColor: {
-                display: "color",
-                display_size: "third",
-                label: "Low", // These values updated in updateAsync
-                order: 7,
-                section: "Formatting",
-                type: "string"
-            },
-            midColor: {
-                display: "color",
-                display_size: "third",
-                label: "Middle",
-                order: 8,
-                section: "Formatting",
-                type: "string"
-            },
-            highColor: {
-                display: "color",
-                display_size: "third",
-                label: "High",
-                order: 9,
-                section: "Formatting",
-                type: "string"
-            },
-            applyTo: {
-                default: "all_numeric_fields",
-                display: "select",
-                label: "Apply to",
-                order: 10,
-                section: "Formatting",
-                type: "string",
-                values: [
-                    {"All numeric fields": "all_numeric_fields"},
-                    {"Select fields...": "select_fields"}
-                ]
-            },
-            // SERIES
-            showFullFieldName: {
-                default: true,
-                label: "Show Full Field Name",
-                order: 1,
-                section: "Series",
-                type: "boolean"
-            },
+            //
+            // // SERIES
+            // showFullFieldName: {
+            //     default: true,
+            //     label: "Show Full Field Name",
+            //     order: 1,
+            //     section: "Series",
+            //     type: "boolean"
+            // },
             // PLOT
-            showRowNumbers: {
-                default: false,
-                label: "Show Row Numbers",
-                order: 1,
-                section: "Plot",
-                type: "boolean"
-            },
-            showSearchBar: {
-                default: false,
-                label: "Show Search Bar",
-                order: 2,
-                section: "Plot",
-                type: "boolean"
-            },
-            showPagination: {
-                default: false,
-                label: "Show Pagination",
-                order: 3,
-                section: "Plot",
-                type: "boolean"
-            },
+            // showRowNumbers: {
+            //     default: false,
+            //     label: "Show Row Numbers",
+            //     order: 1,
+            //     section: "Plot",
+            //     type: "boolean"
+            // },
+            // showSearchBar: {
+            //     default: false,
+            //     label: "Show Search Bar",
+            //     order: 2,
+            //     section: "Plot",
+            //     type: "boolean"
+            // },
+            // showPagination: {
+            //     default: false,
+            //     label: "Show Pagination",
+            //     order: 3,
+            //     section: "Plot",
+            //     type: "boolean"
+            // },
             showTableBorder: {
                 default: true,
                 label: "Show Table Border",
-                order: 4,
+                order: 1,
                 section: "Plot",
                 type: "boolean"
             },
             stripedRows: {
                 default: true,
                 label: "Striped Rows",
-                order: 5,
+                order: 2,
                 section: "Plot",
                 type: "boolean"
             },
-            fontSize: {
-                default: 12,
-                display_size: 'third',
-                label: 'Font size',
-                order: 6,
-                section: 'Plot',
-                type: 'number',
-            },
+            // fontSize: {
+            //     default: 12,
+            //     display_size: 'third',
+            //     label: 'Font size',
+            //     order: 6,
+            //     section: 'Plot',
+            //     type: 'number',
+            // },
 
 
         },
@@ -361,8 +263,8 @@ const customVizDataTable = {
                 var table = $("#lookerDataTable").DataTable({
                     responsive: true,
                     ordering: false,
-                    searching: config.showSearchBar,
-                    paging: config.showPagination,
+                    searching: false,
+                    paging: false,
                     info: config.showPagination,
                     data: dataArray,
                     columns: headerArray,
