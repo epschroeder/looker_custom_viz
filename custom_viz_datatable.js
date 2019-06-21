@@ -360,6 +360,7 @@ const customVizDataTable = {
                 //console.log(data);
                 var table = $("#lookerDataTable").DataTable({
                     responsive: true,
+                    ordering: false,
                     searching: config.showSearchBar,
                     paging: config.showPagination,
                     info: config.showPagination,
