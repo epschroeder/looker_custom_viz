@@ -20,7 +20,7 @@
  * [ ] Add Pivot Fields
  * [ ] Add Totals
  * [ ] Add Row Totals
- * [x] Row Numbers
+ * [ ] Row Numbers
  * [ ] Insert HTML from LookML when available
  * [ ] Add Option: Series name override
  * [ ] Add Option: Font Size
@@ -240,13 +240,13 @@ const customVizDataTable = {
                         ) {
                             type = "num";
                             headerArray.push({
-                                title: columnTitle,
+                                title: labelShort,
                                 type: type,
                                 sClass: "text-right",
                                 // render: $.fn.dataTable.render.number(",", ".", 0, "")
                             });
                         } else {
-                            headerArray.push({title: columnTitle, type: type});
+                            headerArray.push({title: labelShort, type: type});
                         }
                     }
                 }
