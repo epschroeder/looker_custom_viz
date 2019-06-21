@@ -352,13 +352,14 @@ const customVizDataTable = {
             }
 
             var html =
-                '<table id="lookerDataTable" class="table compact" style="width:100%"></table>';
+                '<table id="lookerDataTable" class="table table-responsive" style="width:100%"></table>';
             // Insert the generated html into the page
             this._vizContainer.innerHTML = html;
 
             $(document).ready(function () {
                 //console.log(data);
                 var table = $("#lookerDataTable").DataTable({
+                    responsive: true,
                     searching: config.showSearchBar,
                     paging: config.showPagination,
                     info: config.showPagination,
