@@ -297,9 +297,11 @@ const customVizDataTable = {
                 } else {
                     $("#lookerDataTable").removeClass("table-striped");
                 }
+
+                $('#lookerDataTable').DataTable().columns.adjust();
             });
 
-            $('#lookerDataTable').DataTable().columns.adjust();
+
             doneRendering();
         }
     }
