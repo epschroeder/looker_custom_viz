@@ -254,7 +254,7 @@ const customVizDataTable = {
             }
 
             var html =
-                '<table id="lookerDataTable" class="table" style="width:100%"></table>';
+                '<table id="lookerDataTable" class="table"></table>';
             // Insert the generated html into the page
             this._vizContainer.innerHTML = html;
 
