@@ -39,14 +39,14 @@ const customVizDataTable = {
 
         options: {
             //
-            // // SERIES
-            // showFullFieldName: {
-            //     default: true,
-            //     label: "Show Full Field Name",
-            //     order: 1,
-            //     section: "Series",
-            //     type: "boolean"
-            // },
+            // SERIES
+            showFullFieldName: {
+                default: true,
+                label: "Show Full Field Name",
+                order: 1,
+                section: "Series",
+                type: "boolean"
+            },
             // PLOT
             // showRowNumbers: {
             //     default: false,
@@ -209,7 +209,7 @@ const customVizDataTable = {
                         for (var x = 0; x < queryResponse.fields.table_calculations.length; x++) {
                             if (queryResponse.fields.table_calculations[x]["name"] == key) {
                                 var label = queryResponse.fields.table_calculations[x].label;
-                                var labelShort = queryResponse.fields.table_calculations[x].label_short;
+                                var labelShort = queryResponse.fields.table_calculations[x].label;
                                 var type = queryResponse.fields.table_calculations[x].type;
                                 if (queryResponse.fields.table_calculations[x].sorted) {
                                     var orderDirection = "";
@@ -227,10 +227,10 @@ const customVizDataTable = {
                             }
                             columnCounter++;
                         }
-                        if (config.showFullFieldName == false) {
-                            var columnTitle = labelShort;
-                        } else {
+                        if (config.showFullFieldName == true) {
                             var columnTitle = label;
+                        } else {
+                            var columnTitle = labelShort;
                         }
                         if (
                             type == "count" ||
