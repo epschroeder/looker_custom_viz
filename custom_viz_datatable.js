@@ -154,7 +154,7 @@ const customVizDataTable = {
                 var rowData = [];
 
                 for (var key in row) {
-                    rowData.push(LookerCharts.Utils.textForCell(row[key]));
+                    rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
 
                     if (i == 0) {
                         columnCounter = 0;
@@ -238,7 +238,7 @@ const customVizDataTable = {
                             type == "sum" ||
                             type == "sum_distinct"
                         ) {
-                            type = "num";
+                            type = "html-num-fmt";
                             headerArray.push({
                                 title: labelShort,
                                 type: type,
