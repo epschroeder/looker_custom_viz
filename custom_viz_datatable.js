@@ -259,7 +259,7 @@ const customVizDataTable = {
             this._vizContainer.innerHTML = html;
 
             $(document).ready(function () {
-                //console.log(data);
+                console.log(queryResponse);
                 var table = $("#lookerDataTable").DataTable({
                     autoWidth: true,
                     ordering: false,
