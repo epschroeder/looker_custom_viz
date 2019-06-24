@@ -41,7 +41,7 @@ const customVizDataTable = {
             //
             // SERIES
             showFullFieldName: {
-                default: true,
+                default: false,
                 label: "Show Full Field Name",
                 order: 1,
                 section: "Series",
@@ -246,7 +246,7 @@ const customVizDataTable = {
                                 // render: $.fn.dataTable.render.number(",", ".", 0, "")
                             });
                         } else {
-                            headerArray.push({title: labelShort, type: type});
+                            headerArray.push({title: columnTitle, type: type});
                         }
                     }
                 }
