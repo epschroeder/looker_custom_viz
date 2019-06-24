@@ -261,7 +261,7 @@ const customVizDataTable = {
             $(document).ready(function () {
                 //console.log(data);
                 var table = $("#lookerDataTable").DataTable({
-                    autoWidth: true,
+                    autoWidth: false,
                     ordering: false,
                     searching: false,
                     paging: false,
@@ -297,6 +297,8 @@ const customVizDataTable = {
                 } else {
                     $("#lookerDataTable").removeClass("table-striped");
                 }
+
+                $('#lookerDataTable').DataTable().columns.adjust();
             });
 
 
