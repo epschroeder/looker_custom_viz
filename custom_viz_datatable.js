@@ -261,7 +261,6 @@ const customVizDataTable = {
             $(document).ready(function () {
                 //console.log(data);
                 var table = $("#lookerDataTable").DataTable({
-                    responsive: true,
                     ordering: false,
                     searching: false,
                     paging: false,
