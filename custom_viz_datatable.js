@@ -236,7 +236,8 @@ const customVizDataTable = {
                             type == "count" ||
                             type == "count_distinct" ||
                             type == "sum" ||
-                            type == "sum_distinct"
+                            type == "sum_distinct" ||
+                            type == "number"
                         ) {
                             type = "html-num-fmt";
                             headerArray.push({
