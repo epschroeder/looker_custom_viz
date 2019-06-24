@@ -299,6 +299,7 @@ const customVizDataTable = {
                 }
             });
 
+            $('#lookerDataTable').DataTable().columns.adjust();
             doneRendering();
         }
     }
