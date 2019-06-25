@@ -12,7 +12,7 @@
  *
  **/
 
-const customVizTextFromData = {
+const customVizReportHeader = {
     /**
      * Configuration options
      *
@@ -58,6 +58,8 @@ const customVizTextFromData = {
             return;
         }
 
+        // Render first value of first column as title
+        var htmlTitle = '<h1>Hello, World!</h1>';
 
         var html = '<div class="row">';
         // Iterate through every row in the data
@@ -67,7 +69,6 @@ const customVizTextFromData = {
 
             // Grab first column for the title
             var title = row[queryResponse.fields.dimensions[0].name];
-            ;
 
             // Grab second column for the paragraph
             var paragraph = row[queryResponse.fields.dimensions[1].name];
@@ -86,10 +87,10 @@ const customVizTextFromData = {
         html += "</div>";
 
         // Insert the generated html into the page
-        this._vizContainer.innerHTML = html;
+        this._vizContainer.innerHTML = htmlTitle + html;
 
         doneRendering();
     }
 };
 
-looker.plugins.visualizations.add(customVizTextFromData);
+looker.plugins.visualizations.add(customVizReportHeader);
