@@ -75,7 +75,7 @@ const customVizReportTitlePage = {
         var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
         // Insert the data into text elements
-        var html = '<img src="https://via.placeholder.com/1920x1080" class="img-fluid" alt="">';
+        var html = '<img src="' + config.backgroundImageUrl + '" class="img-fluid" alt="">';
 
         // Insert the generated html into the page
         this._vizContainer.innerHTML = html;
