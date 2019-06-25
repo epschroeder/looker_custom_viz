@@ -79,7 +79,7 @@ const customVizReportTitlePage = {
 
         // Insert the generated html into the page
         this._vizContainer.innerHTML = html;
-
+        console.log(config.backgroundImageUrl);
         doneRendering();
     }
 };
