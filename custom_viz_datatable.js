@@ -39,14 +39,14 @@ const customVizDataTable = {
 
         options: {
             //
-            // // SERIES
-            // showFullFieldName: {
-            //     default: true,
-            //     label: "Show Full Field Name",
-            //     order: 1,
-            //     section: "Series",
-            //     type: "boolean"
-            // },
+            // SERIES
+            showFullFieldName: {
+                default: false,
+                label: "Show Full Field Name",
+                order: 1,
+                section: "Series",
+                type: "boolean"
+            },
             // PLOT
             // showRowNumbers: {
             //     default: false,
@@ -154,7 +154,7 @@ const customVizDataTable = {
                 var rowData = [];
 
                 for (var key in row) {
-                    rowData.push(LookerCharts.Utils.textForCell(row[key]));
+                    rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
 
                     if (i == 0) {
                         columnCounter = 0;
@@ -209,7 +209,7 @@ const customVizDataTable = {
                         for (var x = 0; x < queryResponse.fields.table_calculations.length; x++) {
                             if (queryResponse.fields.table_calculations[x]["name"] == key) {
                                 var label = queryResponse.fields.table_calculations[x].label;
-                                var labelShort = queryResponse.fields.table_calculations[x].label_short;
+                                var labelShort = queryResponse.fields.table_calculations[x].label;
                                 var type = queryResponse.fields.table_calculations[x].type;
                                 if (queryResponse.fields.table_calculations[x].sorted) {
                                     var orderDirection = "";
@@ -227,18 +227,19 @@ const customVizDataTable = {
                             }
                             columnCounter++;
                         }
-                        if (config.showFullFieldName == false) {
-                            var columnTitle = labelShort;
-                        } else {
+                        if (config.showFullFieldName == true) {
                             var columnTitle = label;
+                        } else {
+                            var columnTitle = labelShort;
                         }
                         if (
                             type == "count" ||
                             type == "count_distinct" ||
                             type == "sum" ||
-                            type == "sum_distinct"
+                            type == "sum_distinct" ||
+                            type == "number"
                         ) {
-                            type = "num";
+                            type = "html-num-fmt";
                             headerArray.push({
                                 title: labelShort,
                                 type: type,
@@ -246,7 +247,7 @@ const customVizDataTable = {
                                 // render: $.fn.dataTable.render.number(",", ".", 0, "")
                             });
                         } else {
-                            headerArray.push({title: labelShort, type: type});
+                            headerArray.push({title: columnTitle, type: type});
                         }
                     }
                 }
@@ -259,7 +260,7 @@ const customVizDataTable = {
             this._vizContainer.innerHTML = html;
 
             $(document).ready(function () {
-                //console.log(data);
+                console.log(queryResponse);
                 var table = $("#lookerDataTable").DataTable({
                     autoWidth: true,
                     ordering: false,
