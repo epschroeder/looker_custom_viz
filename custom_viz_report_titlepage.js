@@ -1,7 +1,7 @@
 /**
  * This is a Custom Visualization for Looker
  *
- * It shows the first 2 dimension columns as a title and a paragraph
+ * It shows a full-width background image the first 2 dimension columns as a title and a subtitle
  *
  * CREATED BY: Egbert Schroeder
  *
@@ -57,10 +57,10 @@ const customVizReportTitlePage = {
         this.clearErrors();
 
         // Throw some errors and exit if the shape of the data isn't what this chart needs
-        if (queryResponse.fields.dimensions.length == 0) {
+        if (queryResponse.fields.dimensions.length < 2) {
             this.addError({
-                title: "No Dimensions",
-                message: "This chart requires dimensions."
+                title: "Not Enough Dimensions",
+                message: "This visualisation requires 2 dimensions."
             });
             return;
         }
