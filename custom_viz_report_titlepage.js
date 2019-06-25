@@ -69,10 +69,10 @@ const customVizReportTitlePage = {
         var firstRow = data[0];
 
         // Grab first column for the report title
-        var title = row[queryResponse.fields.dimensions[0].name];
+        var title = firstRow[queryResponse.fields.dimensions[0].name];
 
         // Grab second column for the report subtitle/period
-        var subTitle = row[queryResponse.fields.dimensions[1].name];
+        var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
         // Insert the data into text elements
         var html = '<img src="https://via.placeholder.com/1920x1080" class="img-fluid" alt="">';
