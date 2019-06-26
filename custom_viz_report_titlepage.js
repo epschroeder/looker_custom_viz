@@ -102,7 +102,7 @@ const customVizReportTitlePage = {
         var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
         // Insert the data into text elements
-        var html = '<div class="hero-image">\n' +
+        var html = '<div class="hero-image" style="background-image: url(` + config.backgroundImageUrl + `);">\n' +
             '  <div class="hero-text">\n' +
             '    <h1>I am John Doe</h1>\n' +
             '    <p>And I\'m a Photographer</p>\n' +
