@@ -33,8 +33,35 @@ const customVizReportTitlePage = {
      **/
     create: function (element, config) {
         // Insert Bootstrap css file
-        element.innerHTML =
-            '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">';
+        element.innerHTML = `<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+             <style>
+                body, html {
+                    height: 100%;
+                }
+
+                /* The hero image */
+                .hero-image {
+                    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+                    background-image: url(` + config.backgroundImageUrl + `);
+                    /* Set a specific height */
+                    height: 50%;
+                    /* Position and center the image to scale nicely on all screens */
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                    position: relative;
+                }   
+
+                /* Place text in the middle of the image */
+                .hero-text {
+                    text-align: center;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    color: #ffffff;
+                }
+             </style>`;
 
         // Create a container element to let us center the text.
         this._vizContainer = element.appendChild(document.createElement("div"));
@@ -75,7 +102,14 @@ const customVizReportTitlePage = {
         var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
         // Insert the data into text elements
-        var html = '<img src="' + config.backgroundImageUrl + '" class="img-fluid" alt="">';
+        var html = '<div class="hero-image">\n' +
+            '  <div class="hero-text">\n' +
+            '    <h1>I am John Doe</h1>\n' +
+            '    <p>And I\'m a Photographer</p>\n' +
+            '    <button>Hire me</button>\n' +
+            '  </div>\n' +
+            '</div>' +
+            '<img src="' + config.backgroundImageUrl + '" class="img-fluid" alt="">';
 
         // Insert the generated html into the page
         this._vizContainer.innerHTML = html;
