@@ -108,8 +108,7 @@ const customVizReportTitlePage = {
             '    <p>And I\'m a Photographer</p>\n' +
             '    <button>Hire me</button>\n' +
             '  </div>\n' +
-            '</div>' +
-            '<img src="' + config.backgroundImageUrl + '" class="img-fluid" alt="">';
+            '</div>';
 
         // Insert the generated html into the page
         this._vizContainer.innerHTML = html;
