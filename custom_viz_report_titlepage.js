@@ -47,7 +47,7 @@ const customVizReportTitlePage = {
                     background-position: center;
                     background-repeat: no-repeat;
                     background-size: cover;
-                    position: relative;
+                    /*position: relative;*/
                 }   
 
                 /* Place text in the middle of the image */
@@ -100,7 +100,7 @@ const customVizReportTitlePage = {
         var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
         // Insert the data into text elements
-        var html = `<div class="hero-image" style="background:url('` + config.backgroundImageUrl + `');">
+        var html = `<div class="hero-image" style="background-image:url('` + config.backgroundImageUrl + `');">
             <div class="hero-text">
                 <h1>` + title.value + `</h1>
                 <p>` + subTitle.value + `</p>
