@@ -41,10 +41,8 @@ const customVizReportTitlePage = {
 
                 /* The hero image */
                 .hero-image {
-                    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
-                    background-image: url(` + config.backgroundImageUrl + `);
                     /* Set a specific height */
-                    height: 50%;
+                    height: 100%;
                     /* Position and center the image to scale nicely on all screens */
                     background-position: center;
                     background-repeat: no-repeat;
@@ -59,7 +57,7 @@ const customVizReportTitlePage = {
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -50%);
-                    color: #ffffff;
+                    color: #000000;
                 }
              </style>`;
 
@@ -102,17 +100,16 @@ const customVizReportTitlePage = {
         var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
         // Insert the data into text elements
-        var html = '<div class="hero-image" style="background-image: url(` + config.backgroundImageUrl + `);">\n' +
-            '  <div class="hero-text">\n' +
-            '    <h1>I am John Doe</h1>\n' +
-            '    <p>And I\'m a Photographer</p>\n' +
-            '    <button>Hire me</button>\n' +
-            '  </div>\n' +
-            '</div>';
+        var html = `<div class="hero-image" style="background:url(` + config.backgroundImageUrl + `);">
+            <div class="hero-text">
+                <h1>` + title.value + `</h1>
+                <p>` + subTitle.value + `</p>
+            </div>
+        </div>`;
 
         // Insert the generated html into the page
         this._vizContainer.innerHTML = html;
-        console.log(config.backgroundImageUrl);
+        //console.log(config.backgroundImageUrl);
         doneRendering();
     }
 };
