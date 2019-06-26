@@ -100,7 +100,7 @@ const customVizReportTitlePage = {
         var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
         // Insert the data into text elements
-        var html = `<div class="hero-image" style="background:url(` + config.backgroundImageUrl + `);">
+        var html = `<div class="hero-image" style="background:url('` + config.backgroundImageUrl + `');">
             <div class="hero-text">
                 <h1>` + title.value + `</h1>
                 <p>` + subTitle.value + `</p>
