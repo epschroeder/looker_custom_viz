@@ -107,7 +107,7 @@ const customVizReportTitlePage = {
             //console.log(config.backgroundImageUrl);
 
             if (config.headerImageWidth == true) {
-                this._vizContainer.div.div.img.addClass("w-100");
+                document.getElementById("header-image").addClass("w-100");
             }
             ;
 
