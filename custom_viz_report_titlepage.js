@@ -92,7 +92,7 @@ const customVizReportTitlePage = {
 
             // Insert the data into text elements
             var html = `<div class="row">
-                            <div class="col text-center">
+                            <div class="col text-center align-self-center">
                                 <img src="` + config.headerImageUrl + `" id="header-image" class="img-fluid" alt="">
                             </div>
                         </div>
