@@ -87,7 +87,7 @@ const customVizReportTitlePage = {
             var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
             // Insert the data into text elements
-            var html = `<div class="jumbotron jumbotron-fluid" style="background-image: url('https://images.unsplash.com/photo-1438109491414-7198515b166b?q=80&fm=jpg&s=cbdabf7a79c087a0b060670a6d79726c')">
+            var html = `<div class="jumbotron jumbotron-fluid" style="background-image: url('` + config.backgroundImageUrl + `')">
   						<div class="container">
     					<h1 class="display-4">title.value</h1>
     					<p>This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
