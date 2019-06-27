@@ -38,14 +38,11 @@ const customVizReportTitlePage = {
                 body, html {
                     height: 100%;
                 }
-
-                 .jumbotron {
-                color: white;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
-                height: 100vh;
-            }
+                
+                .row {
+                    height:50vh;
+                    overflow: hidden;
+                }
              </style>`;
 
             // Create a container element to let us center the text.
@@ -87,12 +84,16 @@ const customVizReportTitlePage = {
             var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
             // Insert the data into text elements
-            var html = `<div class="jumbotron jumbotron-fluid" style="background-image: url('` + config.backgroundImageUrl + `')">
-  						<div class="container text-center">
-    					<h1 class="display-3">` + title.value + `</h1>
-    					<h3>` + subTitle.value + `</h3>
-  						</div>
-						</div>`;
+            var html = `<div class="row">
+                            <div class="col text-center">
+                                <img src="` + config.backgroundImageUrl + `" class="w-100 img-fluid" alt="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-center align-self-center"><h1 class="display-3">` + title.value + `</h1>
+                            <h3>\` + subTitle.value + \`</h3>
+                          </div>
+                        </div>`;
 
             // Insert the generated html into the page
             this._vizContainer.innerHTML = html;
