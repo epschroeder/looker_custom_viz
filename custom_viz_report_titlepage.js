@@ -91,7 +91,7 @@ const customVizReportTitlePage = {
                         </div>
                         <div class="row">
                             <div class="col text-center align-self-center"><h1 class="display-3">` + title.value + `</h1>
-                            <h3>\` + subTitle.value + \`</h3>
+                            <h3>` + subTitle.value + `</h3>
                           </div>
                         </div>`;
 
