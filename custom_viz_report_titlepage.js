@@ -88,9 +88,9 @@ const customVizReportTitlePage = {
 
             // Insert the data into text elements
             var html = `<div class="jumbotron jumbotron-fluid" style="background-image: url('` + config.backgroundImageUrl + `')">
-  						<div class="container">
-    					<h1 class="display-4">title.value</h1>
-    					<p>This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  						<div class="container text-center">
+    					<h1 class="display-3">` + title.value + `</h1>
+    					<h3>` + subTitle.value + `</h3>
   						</div>
 						</div>`;
 
