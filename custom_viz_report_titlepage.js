@@ -19,12 +19,19 @@ const customVizReportTitlePage = {
          **/
 
         options: {
-            backgroundImageUrl: {
+            headerImageUrl: {
+                type: "string",
+                label: "Image URL",
                 default: 'https://via.placeholder.com/1920x1080',
-                label: "Background Image URL",
+                placeholder: 'https://via.placeholder.com/1920x1080',
                 order: 1,
-                type: "string"
             },
+            headerImageWidth: {
+                type: "boolean",
+                label: "Full Width Image",
+                default: false,
+                order: 2
+            }
         },
 
         /**
@@ -86,7 +93,7 @@ const customVizReportTitlePage = {
             // Insert the data into text elements
             var html = `<div class="row">
                             <div class="col text-center">
-                                <img src="` + config.backgroundImageUrl + `" class="w-100 img-fluid" alt="">
+                                <img src="` + config.headerImageUrl + `" id="header-image" class="img-fluid" alt="">
                             </div>
                         </div>
                         <div class="row">
@@ -98,6 +105,12 @@ const customVizReportTitlePage = {
             // Insert the generated html into the page
             this._vizContainer.innerHTML = html;
             //console.log(config.backgroundImageUrl);
+
+            if (config.headerImageWidth == true) {
+                $('#header-image').addClass("w-100");
+            }
+            ;
+
             doneRendering();
         }
     }
