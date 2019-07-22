@@ -69,7 +69,7 @@ const customVizTitleWithTooltip = {
         var subTitle = firstRow[queryResponse.fields.dimensions[1].name];
 
         // Grab third column for the report subtitle/period
-        var tooltipText = firstRow[queryResponse.fields.dimensions[1].name];
+        var tooltipText = firstRow[queryResponse.fields.dimensions[2].name];
 
         // Insert the data into text elements
         var html = `<div class="row">
