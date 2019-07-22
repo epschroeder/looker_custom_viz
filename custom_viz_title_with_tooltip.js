@@ -84,6 +84,9 @@ const customVizTitleWithTooltip = {
         // Insert the generated html into the page
         this._vizContainer.innerHTML = html;
 
+        $(document).ready(function () {
+            $('[data-toggle="tooltip"]').tooltip();
+        });
         doneRendering();
     }
 };
