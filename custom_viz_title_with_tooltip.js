@@ -1,7 +1,7 @@
 /**
  * This is a Custom Visualization for Looker
  *
- * It shows the first 2 dimension columns as a title and a paragraph
+ * It shows the first 3 dimension columns as a title, subtitle and a tooltip
  *
  * CREATED BY: Egbert Schroeder
  *
@@ -51,10 +51,10 @@ const customVizTitleWithTooltip = {
         this.clearErrors();
 
         // Throw some errors and exit if the shape of the data isn't what this chart needs
-        if (queryResponse.fields.dimensions.length == 0) {
+        if (queryResponse.fields.dimensions.length < 3) {
             this.addError({
-                title: "No Dimensions",
-                message: "This chart requires dimensions."
+                title: "Not enough dimensions",
+                message: "This chart requires 3 dimensions."
             });
             return;
         }
