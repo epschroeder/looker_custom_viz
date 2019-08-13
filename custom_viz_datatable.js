@@ -258,7 +258,7 @@ const customVizDataTable = {
             }
 
             var html =
-                '<table id="lookerDataTable" class="table"></table>';
+                '<table id="lookerDataTable" class="table table-sm"></table>';
             // Insert the generated html into the page
             this._vizContainer.innerHTML = html;
 
@@ -277,6 +277,8 @@ const customVizDataTable = {
                         header: true,
                         footer: true
                     }
+
+                    table.columns.adjust().draw();
                 });
 
                 // Show or hide row numbers
