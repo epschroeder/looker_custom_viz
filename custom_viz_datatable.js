@@ -305,6 +305,7 @@ const customVizDataTable = {
                 $('#lookerDataTable').DataTable().columns.adjust();
             });
 
+            console.log(headerArray);
             doneRendering();
         }
     }
