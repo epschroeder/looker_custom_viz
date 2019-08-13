@@ -277,8 +277,6 @@ const customVizDataTable = {
                         header: true,
                         footer: true
                     }
-
-                    table.columns.adjust().draw();
                 });
 
                 // Show or hide row numbers
