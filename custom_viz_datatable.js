@@ -306,6 +306,7 @@ const customVizDataTable = {
             });
 
             console.log(headerArray);
+            console.log(queryResponse);
             doneRendering();
         }
     }
