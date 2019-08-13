@@ -160,7 +160,7 @@ const customVizDataTable = {
                         columnCounter = 0;
                         // ADD DIMENSIONS
                         for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
-                            if (queryResponse.fields.dimension_like[x]["name"] == key) {
+                            if (queryResponse.fields.dimension_like[x]["name"] == key && queryResponse.fields.dimension_like[x]["hidden"] == false) {
                                 var label = queryResponse.fields.dimension_like[x].label;
                                 var labelShort =
                                     queryResponse.fields.dimension_like[x].label_short;
@@ -185,7 +185,7 @@ const customVizDataTable = {
                         }
                         // ADD MEASURES
                         for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
-                            if (queryResponse.fields.measure_like[x]["name"] == key) {
+                            if (queryResponse.fields.measure_like[x]["name"] == key && queryResponse.fields.measure_like[x]["hidden"] == false) {
                                 var label = queryResponse.fields.measure_like[x].label;
                                 var labelShort = queryResponse.fields.measure_like[x].label_short;
                                 var type = queryResponse.fields.measure_like[x].type;
@@ -207,7 +207,7 @@ const customVizDataTable = {
                         }
                         // ADD TABLE CALCULATIONS
                         for (var x = 0; x < queryResponse.fields.table_calculations.length; x++) {
-                            if (queryResponse.fields.table_calculations[x]["name"] == key) {
+                            if (queryResponse.fields.table_calculations[x]["name"] == key && queryResponse.fields.table_calculations[x]["hidden"] == false) {
                                 var label = queryResponse.fields.table_calculations[x].label;
                                 var labelShort = queryResponse.fields.table_calculations[x].label;
                                 var type = queryResponse.fields.table_calculations[x].type;
