@@ -16,7 +16,7 @@
  *
  * [x] Add Table Calculations
  * [ ] Add Conditional Formatting
- * [ ] Add Sort for multpiple columns
+ * [ ] Add Sort for multiple columns
  * [ ] Add Pivot Fields
  * [ ] Add Totals
  * [ ] Add Row Totals
@@ -154,13 +154,15 @@ const customVizDataTable = {
                 var rowData = [];
 
                 for (var key in row) {
-                    rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
 
-                    if (i == 0) {
-                        columnCounter = 0;
-                        // ADD DIMENSIONS
-                        for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
-                            if (queryResponse.fields.dimension_like[x]["name"] == key && queryResponse.fields.dimension_like[x]["hidden"] == false) {
+
+                    // if (i == 0) {
+                    columnCounter = 0;
+                    // ADD DIMENSIONS
+                    for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
+                        if (queryResponse.fields.dimension_like[x]["name"] == key && queryResponse.fields.dimension_like[x]["hidden"] == false) {
+                            rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
+                            if (i == 0) {
                                 var label = queryResponse.fields.dimension_like[x].label;
                                 var labelShort =
                                     queryResponse.fields.dimension_like[x].label_short;
@@ -181,11 +183,14 @@ const customVizDataTable = {
                                     sortArray.push([columnCounter, orderDirection]);
                                 }
                             }
-                            columnCounter++;
                         }
-                        // ADD MEASURES
-                        for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
-                            if (queryResponse.fields.measure_like[x]["name"] == key && queryResponse.fields.measure_like[x]["hidden"] == false) {
+                        columnCounter++;
+                    }
+                    // ADD MEASURES
+                    for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
+                        if (queryResponse.fields.measure_like[x]["name"] == key && queryResponse.fields.measure_like[x]["hidden"] == false) {
+                            rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
+                            if (i == 0) {
                                 var label = queryResponse.fields.measure_like[x].label;
                                 var labelShort = queryResponse.fields.measure_like[x].label_short;
                                 var type = queryResponse.fields.measure_like[x].type;
@@ -203,11 +208,14 @@ const customVizDataTable = {
                                     sortArray.push([columnCounter, orderDirection]);
                                 }
                             }
-                            columnCounter++;
                         }
-                        // ADD TABLE CALCULATIONS
-                        for (var x = 0; x < queryResponse.fields.table_calculations.length; x++) {
-                            if (queryResponse.fields.table_calculations[x]["name"] == key && queryResponse.fields.table_calculations[x]["hidden"] == false) {
+                        columnCounter++;
+                    }
+                    // ADD TABLE CALCULATIONS
+                    for (var x = 0; x < queryResponse.fields.table_calculations.length; x++) {
+                        if (queryResponse.fields.table_calculations[x]["name"] == key && queryResponse.fields.table_calculations[x]["hidden"] == false) {
+                            rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
+                            if (i == 0) {
                                 var label = queryResponse.fields.table_calculations[x].label;
                                 var labelShort = queryResponse.fields.table_calculations[x].label;
                                 var type = queryResponse.fields.table_calculations[x].type;
@@ -225,8 +233,11 @@ const customVizDataTable = {
                                     sortArray.push([columnCounter, orderDirection]);
                                 }
                             }
-                            columnCounter++;
                         }
+                        columnCounter++;
+                    }
+
+                    if (i == 0) {
                         if (config.showFullFieldName == true) {
                             var columnTitle = label;
                         } else {
@@ -250,6 +261,7 @@ const customVizDataTable = {
                             headerArray.push({title: columnTitle, type: type});
                         }
                     }
+                    // }
                 }
                 dataArray.push(rowData);
             }
