@@ -224,7 +224,7 @@ const customVizDataTable = {
                     }
                     // ADD TABLE CALCULATIONS
                     for (var x = 0; x < queryResponse.fields.table_calculations.length; x++) {
-                        if (queryResponse.fields.table_calculations[x]["name"] == key && queryResponse.fields.table_calculations[x]["hidden"] == false) {
+                        if (queryResponse.fields.table_calculations[x]["name"] == key) {
                             rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
                             if (i == 0) {
                                 var label = queryResponse.fields.table_calculations[x].label;
