@@ -147,6 +147,7 @@ const customVizDataTable = {
 
             var dataArray = [];
             var headerArray = [];
+            var headerArray2 = [];
             var sortArray = [];
 
             for (let i = 0; i < data.length; i++) {
@@ -167,6 +168,12 @@ const customVizDataTable = {
                                 var labelShort =
                                     queryResponse.fields.dimension_like[x].label_short;
                                 var type = queryResponse.fields.dimension_like[x].type;
+
+
+                                headerArray2.push({
+                                    title: labelShort,
+                                    type: "html-num-fmt",
+                                })
                                 if (queryResponse.fields.dimension_like[x].sorted) {
                                     var orderDirection = "";
                                     if (
@@ -194,6 +201,11 @@ const customVizDataTable = {
                                 var label = queryResponse.fields.measure_like[x].label;
                                 var labelShort = queryResponse.fields.measure_like[x].label_short;
                                 var type = queryResponse.fields.measure_like[x].type;
+                                headerArray2.push({
+                                    title: labelShort,
+                                    type: "html-num-fmt",
+                                    sClass: "text-right",
+                                })
                                 if (queryResponse.fields.measure_like[x].sorted) {
                                     var orderDirection = "";
                                     if (queryResponse.fields.measure_like[x].sorted.desc == true) {
@@ -219,6 +231,11 @@ const customVizDataTable = {
                                 var label = queryResponse.fields.table_calculations[x].label;
                                 var labelShort = queryResponse.fields.table_calculations[x].label;
                                 var type = queryResponse.fields.table_calculations[x].type;
+                                headerArray2.push({
+                                    title: labelShort,
+                                    type: "html-num-fmt",
+                                    sClass: "text-right",
+                                })
                                 if (queryResponse.fields.table_calculations[x].sorted) {
                                     var orderDirection = "";
                                     if (queryResponse.fields.table_calculations[x].sorted.desc == true) {
@@ -236,31 +253,6 @@ const customVizDataTable = {
                         }
                         columnCounter++;
                     }
-
-                    if (i == 0) {
-                        if (config.showFullFieldName == true) {
-                            var columnTitle = label;
-                        } else {
-                            var columnTitle = labelShort;
-                        }
-                        if (
-                            type == "count" ||
-                            type == "count_distinct" ||
-                            type == "sum" ||
-                            type == "sum_distinct" ||
-                            type == "number"
-                        ) {
-                            type = "html-num-fmt";
-                            headerArray.push({
-                                title: labelShort,
-                                type: type,
-                                sClass: "text-right",
-                                // render: $.fn.dataTable.render.number(",", ".", 0, "")
-                            });
-                        } else {
-                            headerArray.push({title: columnTitle, type: type});
-                        }
-                    }
                     // }
                 }
                 dataArray.push(rowData);
@@ -272,7 +264,7 @@ const customVizDataTable = {
             this._vizContainer.innerHTML = html;
 
             $(document).ready(function () {
-                console.log(queryResponse);
+                // console.log(queryResponse);
                 var table = $("#lookerDataTable").DataTable({
                     autoWidth: true,
                     ordering: false,
@@ -280,7 +272,7 @@ const customVizDataTable = {
                     paging: false,
                     info: config.showPagination,
                     data: dataArray,
-                    columns: headerArray,
+                    columns: headerArray2,
                     order: sortArray,
                     fixedHeader: {
                         header: true,
@@ -313,7 +305,6 @@ const customVizDataTable = {
 
                 $('#lookerDataTable').DataTable().columns.adjust();
             });
-
 
             doneRendering();
         }
