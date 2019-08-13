@@ -147,7 +147,6 @@ const customVizDataTable = {
 
             var dataArray = [];
             var headerArray = [];
-            var headerArray2 = [];
             var sortArray = [];
 
             for (let i = 0; i < data.length; i++) {
@@ -170,7 +169,7 @@ const customVizDataTable = {
                                 var type = queryResponse.fields.dimension_like[x].type;
 
 
-                                headerArray2.push({
+                                headerArray.push({
                                     title: labelShort,
                                     type: "html-num-fmt",
                                 })
@@ -201,7 +200,7 @@ const customVizDataTable = {
                                 var label = queryResponse.fields.measure_like[x].label;
                                 var labelShort = queryResponse.fields.measure_like[x].label_short;
                                 var type = queryResponse.fields.measure_like[x].type;
-                                headerArray2.push({
+                                headerArray.push({
                                     title: labelShort,
                                     type: "html-num-fmt",
                                     sClass: "text-right",
@@ -231,9 +230,9 @@ const customVizDataTable = {
                                 var label = queryResponse.fields.table_calculations[x].label;
                                 var labelShort = queryResponse.fields.table_calculations[x].label;
                                 var type = queryResponse.fields.table_calculations[x].type;
-                                headerArray2.push({
-                                    title: labelShort,
-                                    type: "html-num-fmt",
+                                headerArray.push({
+                                    title: label,
+                                    type: type,
                                     sClass: "text-right",
                                 })
                                 if (queryResponse.fields.table_calculations[x].sorted) {
@@ -272,7 +271,7 @@ const customVizDataTable = {
                     paging: false,
                     info: config.showPagination,
                     data: dataArray,
-                    columns: headerArray2,
+                    columns: headerArray,
                     order: sortArray,
                     fixedHeader: {
                         header: true,
