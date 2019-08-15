@@ -48,7 +48,7 @@ const customVizDataTable = {
                 type: "boolean"
             },
             // PLOT
-            // rowNumbers: {
+            // showRowNumbers: {
             //     default: false,
             //     label: "Show Row Numbers",
             //     order: 1,
@@ -69,9 +69,9 @@ const customVizDataTable = {
             //     section: "Plot",
             //     type: "boolean"
             // },
-            tableBorder: {
+            showTableBorder: {
                 default: true,
-                label: "Table Border",
+                label: "Show Table Border",
                 order: 1,
                 section: "Plot",
                 type: "boolean"
@@ -173,7 +173,7 @@ const customVizDataTable = {
                     // ADD DIMENSIONS
                     for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
                         if (queryResponse.fields.dimension_like[x]["name"] == key && queryResponse.fields.dimension_like[x]["hidden"] == false) {
-                            if rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
+                            rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
                             if (i == 0) {
                                 var label = queryResponse.fields.dimension_like[x].label;
                                 var labelShort =
@@ -207,7 +207,14 @@ const customVizDataTable = {
                     // ADD MEASURES
                     for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
                         if (queryResponse.fields.measure_like[x]["name"] == key && queryResponse.fields.measure_like[x]["hidden"] == false) {
-                            renderCellValue;
+                            if (config.htmlFormatting == true) {
+
+                                console.log('html');
+                            } else {
+
+                                console.log('text');
+                            }
+                            rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
                             if (i == 0) {
                                 var label = queryResponse.fields.measure_like[x].label;
                                 var labelShort = queryResponse.fields.measure_like[x].label_short;
@@ -292,7 +299,7 @@ const customVizDataTable = {
                 });
 
                 // Show or hide row numbers
-                if (config.rowNumbers == true) {
+                if (config.showRowNumbers == true) {
                     $("#lookerDataTable thead tr").prepend("<th></th>");
                     $("#lookerDataTable tbody tr").each((i, tr) => {
                         i = i + 1;
@@ -301,29 +308,22 @@ const customVizDataTable = {
                 }
 
                 // Show or hide the table border
-                if (config.tableBorder == true) {
+                if (config.showTableBorder == true) {
                     $("#lookerDataTable").addClass("table-bordered");
                 } else {
                     $("#lookerDataTable").removeClass("table-bordered");
                 }
 
-                // Show or hide the striped rows
+                // Show or hide the table border
                 if (config.stripedRows == true) {
                     $("#lookerDataTable").addClass("table-striped");
                 } else {
                     $("#lookerDataTable").removeClass("table-striped");
                 }
 
-                // Show or hide the striped rows
-                if (config.htmlFormatting == true) {
-                    var renderCellValue = rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
-                } else {
-                    var renderCellValue = rowData.push(LookerCharts.Utils.textForCell(row[key]));
-                }
-
             });
 
-            console.log(renderCellValue);
+
             console.log(queryResponse);
             doneRendering();
         }
