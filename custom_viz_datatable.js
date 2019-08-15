@@ -280,7 +280,7 @@ const customVizDataTable = {
                 }
                 dataArray.push(rowData);
             }
-
+            console.log(dataArray);
             if (queryResponse.has_totals == true) {
                 console.log(queryResponse.totals_data);
             } else {
