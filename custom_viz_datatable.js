@@ -48,7 +48,7 @@ const customVizDataTable = {
                 type: "boolean"
             },
             // PLOT
-            // showRowNumbers: {
+            // rowNumbers: {
             //     default: false,
             //     label: "Show Row Numbers",
             //     order: 1,
@@ -69,9 +69,9 @@ const customVizDataTable = {
             //     section: "Plot",
             //     type: "boolean"
             // },
-            showTableBorder: {
+            tableBorder: {
                 default: true,
-                label: "Show Table Border",
+                label: "Table Border",
                 order: 1,
                 section: "Plot",
                 type: "boolean"
@@ -80,6 +80,13 @@ const customVizDataTable = {
                 default: true,
                 label: "Striped Rows",
                 order: 2,
+                section: "Plot",
+                type: "boolean"
+            },
+            htmlFormatting: {
+                default: true,
+                label: "HTML Formatting",
+                order: 3,
                 section: "Plot",
                 type: "boolean"
             },
@@ -166,7 +173,7 @@ const customVizDataTable = {
                     // ADD DIMENSIONS
                     for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
                         if (queryResponse.fields.dimension_like[x]["name"] == key && queryResponse.fields.dimension_like[x]["hidden"] == false) {
-                            rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
+                            if rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
                             if (i == 0) {
                                 var label = queryResponse.fields.dimension_like[x].label;
                                 var labelShort =
@@ -200,7 +207,7 @@ const customVizDataTable = {
                     // ADD MEASURES
                     for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
                         if (queryResponse.fields.measure_like[x]["name"] == key && queryResponse.fields.measure_like[x]["hidden"] == false) {
-                            rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
+                            renderCellValue;
                             if (i == 0) {
                                 var label = queryResponse.fields.measure_like[x].label;
                                 var labelShort = queryResponse.fields.measure_like[x].label_short;
@@ -285,7 +292,7 @@ const customVizDataTable = {
                 });
 
                 // Show or hide row numbers
-                if (config.showRowNumbers == true) {
+                if (config.rowNumbers == true) {
                     $("#lookerDataTable thead tr").prepend("<th></th>");
                     $("#lookerDataTable tbody tr").each((i, tr) => {
                         i = i + 1;
@@ -294,23 +301,29 @@ const customVizDataTable = {
                 }
 
                 // Show or hide the table border
-                if (config.showTableBorder == true) {
+                if (config.tableBorder == true) {
                     $("#lookerDataTable").addClass("table-bordered");
                 } else {
                     $("#lookerDataTable").removeClass("table-bordered");
                 }
 
-                // Show or hide the table border
+                // Show or hide the striped rows
                 if (config.stripedRows == true) {
                     $("#lookerDataTable").addClass("table-striped");
                 } else {
                     $("#lookerDataTable").removeClass("table-striped");
                 }
 
-                $('#lookerDataTable').DataTable().columns.adjust();
+                // Show or hide the striped rows
+                if (config.htmlFormatting == true) {
+                    var renderCellValue = rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
+                } else {
+                    var renderCellValue = rowData.push(LookerCharts.Utils.textForCell(row[key]));
+                }
+
             });
 
-            console.log(headerArray);
+            console.log(renderCellValue);
             console.log(queryResponse);
             doneRendering();
         }
