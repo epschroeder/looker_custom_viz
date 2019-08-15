@@ -310,7 +310,7 @@ const customVizDataTable = {
                 }
 
                 // Show or hide the table border
-                if (config.showTableBorder == false) {
+                if (config.showTableBorder == true) {
                     $("#lookerDataTable").addClass("table-bordered");
                 } else {
                     $("#lookerDataTable").removeClass("table-bordered");
