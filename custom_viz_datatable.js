@@ -128,6 +128,7 @@ const customVizDataTable = {
 
 // Create a container element to let us center the text.
             this._vizContainer = element.appendChild(document.createElement("div"));
+            this._vizContainer.className = "container-fluid";
         },
 
         /**
@@ -274,8 +275,11 @@ const customVizDataTable = {
                 dataArray.push(rowData);
             }
 
-            var html =
-                '<table id="lookerDataTable" class="table table-sm"></table>';
+            var html = `<div class="row">
+                            <div class="col">
+                                <table id="lookerDataTable" class="table table-sm"></table>
+                            </div>
+                        </div>`;
             // Insert the generated html into the page
             this._vizContainer.innerHTML = html;
 
@@ -306,13 +310,13 @@ const customVizDataTable = {
                 }
 
                 // Show or hide the table border
-                if (config.showTableBorder == true) {
+                if (config.showTableBorder == false) {
                     $("#lookerDataTable").addClass("table-bordered");
                 } else {
                     $("#lookerDataTable").removeClass("table-bordered");
                 }
 
-                // Show or hide the table border
+                // Show or hide the striped rows
                 if (config.stripedRows == true) {
                     $("#lookerDataTable").addClass("table-striped");
                 } else {
