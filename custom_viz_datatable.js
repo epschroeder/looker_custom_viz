@@ -207,10 +207,10 @@ const customVizDataTable = {
                     // ADD MEASURES
                     for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
                         if (queryResponse.fields.measure_like[x]["name"] == key && queryResponse.fields.measure_like[x]["hidden"] == false) {
-                            if (config.htmlFormatting == true) {
-                                rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
-                            } else {
+                            if (config.htmlFormatting == false) {
                                 rowData.push(LookerCharts.Utils.textForCell(row[key]));
+                            } else {
+                                rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
                             }
 
                             if (i == 0) {
