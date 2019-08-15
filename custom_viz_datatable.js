@@ -208,13 +208,11 @@ const customVizDataTable = {
                     for (var x = 0; x < queryResponse.fields.measure_like.length; x++) {
                         if (queryResponse.fields.measure_like[x]["name"] == key && queryResponse.fields.measure_like[x]["hidden"] == false) {
                             if (config.htmlFormatting == true) {
-
-                                console.log('html');
+                                rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
                             } else {
-
-                                console.log('text');
+                                rowData.push(LookerCharts.Utils.textForCell(row[key]));
                             }
-                            rowData.push(LookerCharts.Utils.htmlForCell(row[key]));
+
                             if (i == 0) {
                                 var label = queryResponse.fields.measure_like[x].label;
                                 var labelShort = queryResponse.fields.measure_like[x].label_short;
