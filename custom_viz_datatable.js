@@ -244,6 +244,11 @@ const customVizDataTable = {
                                 }
                             }
                         }
+                        if (queryResponse.has_totals == true) {
+                            if (i == 0 && queryResponse.totals_data[key] == key) {
+                                console.log('yes: ' + key);
+                            }
+                        }
                         columnCounter++;
                     }
                     // ADD TABLE CALCULATIONS
@@ -282,6 +287,7 @@ const customVizDataTable = {
             }
             console.log(dataArray);
             if (queryResponse.has_totals == true) {
+
                 console.log(queryResponse.totals_data);
             } else {
                 console.log('no totals detected');
