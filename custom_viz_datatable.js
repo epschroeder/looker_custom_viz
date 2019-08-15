@@ -303,7 +303,8 @@ const customVizDataTable = {
                         header: true,
                         footer: true
                     }
-                });
+                }).columns.adjust().responsive.recalc();
+                ;
 
                 // Show or hide row numbers
                 if (config.showRowNumbers == true) {
