@@ -166,6 +166,7 @@ const customVizDataTable = {
             var dataArray = [];
             var headerArray = [];
             var sortArray = [];
+            var totalArray = [];
 
             for (let i = 0; i < data.length; i++) {
                 var row = data[i];
@@ -278,6 +279,12 @@ const customVizDataTable = {
                     // }
                 }
                 dataArray.push(rowData);
+            }
+
+            if (queryResponse.has_totals == true) {
+                console.log(queryResponse.totals_data);
+            } else {
+                console.log('no totals detected');
             }
 
             var html = `<div class="row">
