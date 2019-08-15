@@ -119,7 +119,11 @@ const customVizDataTable = {
                 \
                 .table thead th {\
                 font-size: ' + config.fontSize + 'px;\
-                padding-right: 0px;\
+                padding-right: 0 !important;\
+                }\
+                \
+                .table-sm thead th {\
+                padding: 0.3rem !important;\
                 }\
                 \
                 .table tbody td {\
