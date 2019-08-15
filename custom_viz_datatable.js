@@ -105,6 +105,11 @@ const customVizDataTable = {
                 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" />\
                 <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.4/css/fixedHeader.bootstrap4.min.css" />\
                 <style>\
+                body {\
+                margin: 0;\
+                padding: 0;\
+                }\
+                \
                 th {\
                 font-size: ' + config.fontSize + 'px;\
                 }\
