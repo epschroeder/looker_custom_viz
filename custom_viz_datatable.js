@@ -287,10 +287,10 @@ const customVizDataTable = {
                     if (queryResponse.totals_data[column]) {
                         // console.log('Column: ' + column);
                         // console.log(queryResponse.totals_data[column].html);
-                        totalArray.push(queryResponse.totals_data[column].html);
+                        totalArray.push('<strong>' + queryResponse.totals_data[column].html + '</strong>');
                     } else {
                         // console.log('Column: empty');
-                        totalArray.push('');
+                        totalArray.push('<strong>Total</strong>');
                     }
                 }
                 dataArray.push(totalArray);
