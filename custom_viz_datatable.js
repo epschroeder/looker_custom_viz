@@ -281,20 +281,13 @@ const customVizDataTable = {
                 dataArray.push(rowData);
             }
 
-
-            for (var column in data[0]) {
-                console.log('Column: ' + column);
-            }
-
-
-            //console.log(dataArray);
-
             if (queryResponse.has_totals == true) {
+                for (var column in data[0]) {
+                    console.log('Column: ' + column);
 
-                console.log('Total:' + queryResponse.totals_data);
-            } else {
-                console.log('no totals detected');
+                }
             }
+
 
             var html = `<div class="row">
                             <div class="col">
