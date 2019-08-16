@@ -283,8 +283,7 @@ const customVizDataTable = {
 
 
             for (var column in data[0]) {
-                console.log
-                'Column: ' + (column);
+                console.log('Column: ' + column);
             }
 
 
@@ -292,7 +291,7 @@ const customVizDataTable = {
 
             if (queryResponse.has_totals == true) {
 
-                console.log(queryResponse.totals_data);
+                console.log('Total:' + queryResponse.totals_data);
             } else {
                 console.log('no totals detected');
             }
