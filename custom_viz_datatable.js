@@ -286,9 +286,11 @@ const customVizDataTable = {
 
                     if (queryResponse.totals_data[column]) {
                         console.log('Column: ' + column);
-                        //console.log(queryResponse.totals_data[key].html);
+                        console.log(queryResponse.totals_data[column].html);
+                        totalArray.push(queryResponse.totals_data[column].html);
                     } else {
                         console.log('Column: empty');
+                        totalArray.push('');
                     }
                 }
             } else {
@@ -348,6 +350,7 @@ const customVizDataTable = {
 
 
             console.log(queryResponse);
+            console.log(totalArray);
             doneRendering();
         }
     }
