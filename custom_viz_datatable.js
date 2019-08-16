@@ -293,10 +293,11 @@ const customVizDataTable = {
                         totalArray.push('');
                     }
                 }
+                dataArray.push(totalArray);
             } else {
                 // console.log('no totals');
             }
-            dataArray.push(totalArray);
+
 
             var html = `<div class="row">
                             <div class="col">
