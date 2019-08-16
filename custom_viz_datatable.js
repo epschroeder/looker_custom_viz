@@ -349,7 +349,7 @@ const customVizDataTable = {
             });
 
 
-            console.log(queryResponse);
+            console.log(dataArray);
             console.log(totalArray);
             doneRendering();
         }
