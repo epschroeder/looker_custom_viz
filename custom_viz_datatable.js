@@ -296,8 +296,7 @@ const customVizDataTable = {
                 if (totalArray[0] === '') {
                     totalArray[0] = '<strong>Total:</strong>';
                 }
-                d
-                ataArray.push(totalArray);
+                dataArray.push(totalArray);
             }
 
 
