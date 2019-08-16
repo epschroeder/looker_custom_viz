@@ -261,10 +261,10 @@ const customVizDataTable = {
                                 })
                                 if (queryResponse.fields.table_calculations[x].sorted) {
                                     var orderDirection = "";
-                                    if (queryResponse.fields.table_calculations[x].sorted.desc == true) {
+                                    if (queryResponse.fields.table_calculations[x].sorted.desc === true) {
                                         orderDirection = "desc";
                                     } else if (
-                                        queryResponse.fields.table_calculations[x].sorted.desc == false
+                                        queryResponse.fields.table_calculations[x].sorted.desc === false
                                     ) {
                                         orderDirection = "asc";
                                     } else {
@@ -281,7 +281,7 @@ const customVizDataTable = {
                 dataArray.push(rowData);
             }
 
-            if (queryResponse.has_totals == true) {
+            if (queryResponse.has_totals === true) {
                 for (var column in data[0]) {
                     console.log('Column: ' + column);
 
@@ -315,7 +315,7 @@ const customVizDataTable = {
                 }).columns.adjust();
 
                 // Show or hide row numbers
-                if (config.showRowNumbers == true) {
+                if (config.showRowNumbers === true) {
                     $("#lookerDataTable thead tr").prepend("<th></th>");
                     $("#lookerDataTable tbody tr").each((i, tr) => {
                         i = i + 1;
@@ -324,14 +324,14 @@ const customVizDataTable = {
                 }
 
                 // Show or hide the table border
-                if (config.showTableBorder == true) {
+                if (config.showTableBorder === true) {
                     $("#lookerDataTable").addClass("table-bordered");
                 } else {
                     $("#lookerDataTable").removeClass("table-bordered");
                 }
 
                 // Show or hide the striped rows
-                if (config.stripedRows == true) {
+                if (config.stripedRows === true) {
                     $("#lookerDataTable").addClass("table-striped");
                 } else {
                     $("#lookerDataTable").removeClass("table-striped");
