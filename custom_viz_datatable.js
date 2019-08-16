@@ -293,10 +293,11 @@ const customVizDataTable = {
                         totalArray.push('');
                     }
                 }
-                if (totalArray[0] = '') {
+                if (totalArray[0] === '') {
                     totalArray[0] = '<strong>Total:</strong>';
                 }
-                dataArray.push(totalArray);
+                d
+                ataArray.push(totalArray);
             }
 
 
