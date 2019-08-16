@@ -285,18 +285,18 @@ const customVizDataTable = {
                 for (var column in data[0]) {
 
                     if (queryResponse.totals_data[column]) {
-                        console.log('Column: ' + column);
-                        console.log(queryResponse.totals_data[column].html);
+                        // console.log('Column: ' + column);
+                        // console.log(queryResponse.totals_data[column].html);
                         totalArray.push(queryResponse.totals_data[column].html);
                     } else {
-                        console.log('Column: empty');
+                        // console.log('Column: empty');
                         totalArray.push('');
                     }
                 }
             } else {
-                console.log('no totals');
+                // console.log('no totals');
             }
-
+            dataArray.push(totalArray);
 
             var html = `<div class="row">
                             <div class="col">
