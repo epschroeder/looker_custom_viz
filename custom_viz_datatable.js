@@ -286,6 +286,8 @@ const customVizDataTable = {
                     console.log('Column: ' + column);
 
                 }
+            } else {
+                console.log('no totals');
             }
 
 
