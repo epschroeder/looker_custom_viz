@@ -11,10 +11,10 @@ Visualizing results in a DataTables.js table
  - [x] Add Table Calculations
  - [ ] Add Conditional Formatting
  - [ ] Add Pivot Fields
- - [ ] Add Totals
+ - [x] Add Totals
  - [ ] Add Row Totals
  - [x] Row Numbers
- - [ ] Insert HTML from LookML when available
+ - [x] Insert HTML from LookML when available
  - [ ] Add Option: Series name override
  - [ ] Add Option: Font Size
  - [ ] Add Option: Cell Padding
