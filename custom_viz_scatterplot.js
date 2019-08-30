@@ -81,6 +81,12 @@ const customVizScatterPlot = {
                         type: 'bubble',
                         zoomType: 'xy'
                     },
+                    title: {
+                        text: ''
+                    },
+                    subtitle: {
+                        text: ''
+                    },
                     xAxis: {
                         gridLineWidth: 1,
                         title: {
