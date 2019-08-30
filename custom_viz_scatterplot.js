@@ -55,7 +55,7 @@ const customVizScatterPlot = {
 
                         //console.log($measure_keys[b]);
                         if (queryResponse.fields.measure_like[b]["name"] == key && queryResponse.fields.measure_like[b]["hidden"] == false) {
-                            $rowData[$measure_keys[b]] = LookerCharts.Utils.textForCell(row[key]);
+                            $rowData[$measure_keys[b]] = row[key].value;
                         }
                     }
                 }
