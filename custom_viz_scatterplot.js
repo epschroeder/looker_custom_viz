@@ -89,8 +89,6 @@ const customVizScatterPlot = {
                     },
                     xAxis: {
                         min: 0,
-                        startOnTick: true,
-                        endOnTick: true,
                         gridLineWidth: 1,
 
                         title: {
@@ -103,8 +101,6 @@ const customVizScatterPlot = {
 
                     yAxis: {
                         min: 0,
-                        startOnTick: true,
-                        endOnTick: true,
                         title: {
                             text: 'yAxis'
                         },
