@@ -41,20 +41,25 @@ const customVizScatterPlot = {
             // Create list of unique values from first column
             for (let i = 0; i < data.length; i++) {
                 var row = data[i];
-
-
-                var $rowData = [];
+                var $rowData = {};
 
                 for (var key in row) {
                     for (var a = 0; a < queryResponse.fields.dimension_like.length; a++) {
                         if (queryResponse.fields.dimension_like[a]["name"] == key && queryResponse.fields.dimension_like[a]["hidden"] == false) {
-                            $rowData[$dimension_keys[a]] = LookerCharts.Utils.textForCell(row[key]);
+                            $rowData.name = LookerCharts.Utils.textForCell(row[key]);
                         }
                     }
 
                     for (var b = 0; b < queryResponse.fields.measure_like.length; b++) {
                         if (queryResponse.fields.measure_like[b]["name"] == key && queryResponse.fields.measure_like[b]["hidden"] == false) {
-                            $rowData[$measure_keys[b]] = row[key].value;
+                            if (b == 0) {
+                                $rowData.x = row[key].value;
+                            } else if (b == 1) {
+                                $rowData.y = row[key].value;
+                            } else {
+                                $rowData.z = row[key].value;
+                            }
+
                         }
                     }
                 }
