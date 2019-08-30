@@ -136,7 +136,13 @@ const customVizScatterPlot = {
                     },
 
                     series: [{
-                        data: $dataArray
+                        data: [
+                            {x: 95, y: 95, name: 'BE', country: 'Belgium'},
+                            {x: 86.5, y: 102.9, z: 14.7, name: 'DE', country: 'Germany'},
+                            {x: 80.8, y: 91.5, z: 15.8, name: 'FI', country: 'Finland'},
+                            {x: 80.4, y: 102.5, z: 12, name: 'NL', country: 'Netherlands'}
+
+                        ]
                     }]
                 });
             });
