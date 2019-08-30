@@ -53,8 +53,6 @@ const customVizScatterPlot = {
                     }
 
                     for (var b = 0; b < queryResponse.fields.measure_like.length; b++) {
-
-                        //console.log($measure_keys[b]);
                         if (queryResponse.fields.measure_like[b]["name"] == key && queryResponse.fields.measure_like[b]["hidden"] == false) {
                             $rowData[$measure_keys[b]] = row[key].value;
                         }
@@ -81,10 +79,10 @@ const customVizScatterPlot = {
                     xAxis: {
                         gridLineWidth: 1,
                         title: {
-                            text: 'Daily fat intake'
+                            text: 'xAxis'
                         },
                         labels: {
-                            format: '{value} gr'
+                            format: '{value}'
                         }
                     },
 
@@ -92,27 +90,12 @@ const customVizScatterPlot = {
                         startOnTick: false,
                         endOnTick: false,
                         title: {
-                            text: 'Daily sugar intake'
+                            text: 'yAxis'
                         },
                         labels: {
-                            format: '{value} gr'
-                        },
-                        maxPadding: 0.2,
-                        plotLines: [{
-                            color: 'black',
-                            dashStyle: 'dot',
-                            width: 2,
-                            value: 50,
-                            label: {
-                                align: 'right',
-                                style: {
-                                    fontStyle: 'italic'
-                                },
-                                text: 'Safe sugar intake 50g/day',
-                                x: -10
-                            },
-                            zIndex: 3
-                        }]
+                            format: '{value}'
+                        }
+
                     },
 
                     tooltip: {
@@ -136,13 +119,14 @@ const customVizScatterPlot = {
                     },
 
                     series: [{
-                        data: [
+                        data: $dataArray
+                        /*[
                             {x: 95, y: 95, name: 'BE', country: 'Belgium'},
                             {x: 86.5, y: 102.9, z: 14.7, name: 'DE', country: 'Germany'},
                             {x: 80.8, y: 91.5, z: 15.8, name: 'FI', country: 'Finland'},
                             {x: 80.4, y: 102.5, z: 12, name: 'NL', country: 'Netherlands'}
 
-                        ]
+                        ]*/
                     }]
                 });
             });
