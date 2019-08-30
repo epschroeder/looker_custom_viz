@@ -33,6 +33,7 @@ const customVizScatterPlot = {
          **/
         updateAsync: function (data, element, config, queryResponse, details, doneRendering) {
             // set the dimensions and margins of the graph
+            var $dimension_keys = ["name", "country", "column3"];
             var $measure_keys = ["x", "y", "z"];
 
             var $dataArray = [];
@@ -47,7 +48,7 @@ const customVizScatterPlot = {
                 for (var key in row) {
                     for (var a = 0; a < queryResponse.fields.dimension_like.length; a++) {
                         if (queryResponse.fields.dimension_like[a]["name"] == key && queryResponse.fields.dimension_like[a]["hidden"] == false) {
-                            $rowData[key] = LookerCharts.Utils.textForCell(row[key]);
+                            $rowData[$dimension_keys[a]] = LookerCharts.Utils.textForCell(row[key]);
                         }
                     }
 
@@ -77,15 +78,61 @@ const customVizScatterPlot = {
                         type: 'bubble',
                         zoomType: 'xy'
                     },
+                    xAxis: {
+                        gridLineWidth: 1,
+                        title: {
+                            text: 'Daily fat intake'
+                        },
+                        labels: {
+                            format: '{value} gr'
+                        }
+                    },
+
+                    yAxis: {
+                        startOnTick: false,
+                        endOnTick: false,
+                        title: {
+                            text: 'Daily sugar intake'
+                        },
+                        labels: {
+                            format: '{value} gr'
+                        },
+                        maxPadding: 0.2,
+                        plotLines: [{
+                            color: 'black',
+                            dashStyle: 'dot',
+                            width: 2,
+                            value: 50,
+                            label: {
+                                align: 'right',
+                                style: {
+                                    fontStyle: 'italic'
+                                },
+                                text: 'Safe sugar intake 50g/day',
+                                x: -10
+                            },
+                            zIndex: 3
+                        }]
+                    },
+
                     tooltip: {
                         useHTML: true,
                         headerFormat: '<table>',
                         pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
-                            '<tr><th>X:</th><td>{point.x}</td></tr>' +
-                            '<tr><th>Y:</th><td>{point.y}</td></tr>' +
-                            '<tr><th>Z:</th><td>{point.z}</td></tr>',
+                            '<tr><th>X:</th><td>{point.x}g</td></tr>' +
+                            '<tr><th>Y:</th><td>{point.y}g</td></tr>' +
+                            '<tr><th>Z:</th><td>{point.z}%</td></tr>',
                         footerFormat: '</table>',
                         followPointer: true
+                    },
+
+                    plotOptions: {
+                        series: {
+                            dataLabels: {
+                                enabled: true,
+                                format: '{point.name}'
+                            }
+                        }
                     },
 
                     series: [{
