@@ -133,7 +133,7 @@ const customVizDataTable = {
 
 // Create a container element to let us center the text.
             this._vizContainer = element.appendChild(document.createElement("div"));
-            this._vizContainer.className = "container-fluid";
+            // thiis._vizContainer.className = "container-fluid";
         },
 
         /**
@@ -300,11 +300,7 @@ const customVizDataTable = {
             }
 
 
-            var html = `<div class="row">
-                            <div class="col">
-                                <table id="lookerDataTable" class="table table-sm"></table>
-                            </div>
-                        </div>`;
+            var html = '<table id="lookerDataTable" class="table table-sm"></table>';
             // Insert the generated html into the page
             this._vizContainer.innerHTML = html;
 
