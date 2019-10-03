@@ -114,9 +114,9 @@ const customVizScatterPlot = {
                         useHTML: true,
                         headerFormat: '<table>',
                         pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
-                            '<tr><th>X:</th><td>{point.x}g</td></tr>' +
-                            '<tr><th>Y:</th><td>{point.y}g</td></tr>' +
-                            '<tr><th>Z:</th><td>{point.z}%</td></tr>',
+                            '<tr><th>X:</th><td>{point.x}</td></tr>' +
+                            '<tr><th>Y:</th><td>{point.y}</td></tr>' +
+                            '<tr><th>Z:</th><td>{point.z}</td></tr>',
                         footerFormat: '</table>',
                         followPointer: true
                     },
