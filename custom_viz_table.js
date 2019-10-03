@@ -138,7 +138,7 @@ const customVizTable = {
                 }
 
                 for (var y = 0; y < queryResponse.fields.measure_like.length; y++) {
-                    if (queryResponse.fields.measure_like[x]["name"] == key && queryResponse.fields.measure_like[x]["hidden"] == false) {
+                    if (queryResponse.fields.measure_like[y]["name"] == key && queryResponse.fields.measure_like[y]["hidden"] == false) {
                         if (i == 0) {
                             headerHtml += '<th>' + queryResponse.fields.measure_like[y].label_short + '</th>';
                         }
@@ -146,7 +146,7 @@ const customVizTable = {
                 }
 
                 for (var z = 0; z < queryResponse.fields.table_calculations.length; z++) {
-                    if (queryResponse.fields.table_calculations[x]["name"] == key) {
+                    if (queryResponse.fields.table_calculations[z]["name"] == key) {
                         if (i == 0) {
                             headerHtml += '<th>' + queryResponse.fields.table_calculations[z].label + '</th>';
                         }
