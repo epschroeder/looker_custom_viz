@@ -117,6 +117,15 @@ const customVizDataTable = {
                 padding: 0;\
                 }\
                 \
+                #vis {\
+                margin:0;\
+                padding:0;\
+                }\
+                \
+                .table {\
+                width: 100%;\
+                }\
+                \
                 .table thead th {\
                 font-size: ' + config.fontSize + 'px;\
                 padding-right: 0 !important;\
@@ -129,11 +138,11 @@ const customVizDataTable = {
                 .table tbody td {\
                 font-size: ' + config.fontSize + 'px;\
                 }\
-                </style > ';
+                </style >';
 
 // Create a container element to let us center the text.
             this._vizContainer = element.appendChild(document.createElement("div"));
-            // thiis._vizContainer.className = "container-fluid";
+            // this._vizContainer.className = "container-fluid";
         },
 
         /**
@@ -307,7 +316,7 @@ const customVizDataTable = {
             $(document).ready(function () {
                 // console.log(queryResponse);
                 var table = $("#lookerDataTable").DataTable({
-                    autoWidth: true,
+                    // autoWidth: true,
                     ordering: false,
                     searching: false,
                     paging: false,
