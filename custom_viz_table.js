@@ -165,7 +165,7 @@ const customVizTable = {
                 html += rowHtml;
             }
             html += '</table>';
-
+            console.log(html);
 
             // Insert the generated html into the page
             this._vizContainer.innerHTML = html;
