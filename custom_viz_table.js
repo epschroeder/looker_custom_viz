@@ -91,7 +91,7 @@ const customVizTable = {
             // Insert Bootstrap and DataTables css file
             element.innerHTML =
                 '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">' +
-                '<style>body{margin:0;padding:0;}</style>';
+                '<style>body{margin:0;padding:0;}#vis{margin:0;padding:0;}</style>';
 
             // Create a container element to let us center the text.
             this._vizContainer = element.appendChild(document.createElement("div"));
@@ -130,20 +130,26 @@ const customVizTable = {
                 // CREATE HEADER ROW
                 var headerHtml = '<tr>';
                 for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
-                    if (i == 0) {
-                        headerHtml += '<th>' + queryResponse.fields.dimension_like[x].label_short + '</th>';
+                    if (queryResponse.fields.dimension_like[x]["name"] == key && queryResponse.fields.dimension_like[x]["hidden"] == false) {
+                        if (i == 0) {
+                            headerHtml += '<th>' + queryResponse.fields.dimension_like[x].label_short + '</th>';
+                        }
                     }
                 }
 
                 for (var y = 0; y < queryResponse.fields.measure_like.length; y++) {
-                    if (i == 0) {
-                        headerHtml += '<th>' + queryResponse.fields.measure_like[y].label_short + '</th>';
+                    if (queryResponse.fields.measure_like[x]["name"] == key && queryResponse.fields.measure_like[x]["hidden"] == false) {
+                        if (i == 0) {
+                            headerHtml += '<th>' + queryResponse.fields.measure_like[y].label_short + '</th>';
+                        }
                     }
                 }
 
                 for (var z = 0; z < queryResponse.fields.table_calculations.length; z++) {
-                    if (i == 0) {
-                        headerHtml += '<th>' + queryResponse.fields.table_calculations[z].label + '</th>';
+                    if (queryResponse.fields.table_calculations[x]["name"] == key) {
+                        if (i == 0) {
+                            headerHtml += '<th>' + queryResponse.fields.table_calculations[z].label + '</th>';
+                        }
                     }
                 }
                 headerHtml += '</tr>';
