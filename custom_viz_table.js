@@ -129,26 +129,28 @@ const customVizTable = {
                 var row = data[i];
                 // CREATE HEADER ROW
                 var headerHtml = '<tr>';
-                for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
-                    if (queryResponse.fields.dimension_like[x]["name"] == key && queryResponse.fields.dimension_like[x]["hidden"] == false) {
-                        if (i == 0) {
-                            headerHtml += '<th>' + queryResponse.fields.dimension_like[x].label_short + '</th>';
+                for (var key in row) {
+                    for (var x = 0; x < queryResponse.fields.dimension_like.length; x++) {
+                        if (queryResponse.fields.dimension_like[x]["name"] == key && queryResponse.fields.dimension_like[x]["hidden"] == false) {
+                            // if (i == 0) {
+                            headerHtml += '<th>dimension: ' + queryResponse.fields.dimension_like[x].label_short + '</th>';
+                            // }
                         }
                     }
-                }
 
-                for (var y = 0; y < queryResponse.fields.measure_like.length; y++) {
-                    if (queryResponse.fields.measure_like[y]["name"] == key && queryResponse.fields.measure_like[y]["hidden"] == false) {
-                        if (i == 0) {
-                            headerHtml += '<th>' + queryResponse.fields.measure_like[y].label_short + '</th>';
+                    for (var y = 0; y < queryResponse.fields.measure_like.length; y++) {
+                        if (queryResponse.fields.measure_like[y]["name"] == key && queryResponse.fields.measure_like[y]["hidden"] == false) {
+                            if (i == 0) {
+                                headerHtml += '<th>measure: ' + queryResponse.fields.measure_like[y].label_short + '</th>';
+                            }
                         }
                     }
-                }
 
-                for (var z = 0; z < queryResponse.fields.table_calculations.length; z++) {
-                    if (queryResponse.fields.table_calculations[z]["name"] == key) {
-                        if (i == 0) {
-                            headerHtml += '<th>' + queryResponse.fields.table_calculations[z].label + '</th>';
+                    for (var z = 0; z < queryResponse.fields.table_calculations.length; z++) {
+                        if (queryResponse.fields.table_calculations[z]["name"] == key) {
+                            if (i == 0) {
+                                headerHtml += '<th>calculation: ' + queryResponse.fields.table_calculations[z].label + '</th>';
+                            }
                         }
                     }
                 }
