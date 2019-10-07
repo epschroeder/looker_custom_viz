@@ -348,6 +348,13 @@ const customVizDataTable = {
                     })
                 }
 
+                // Show or hide the table headers
+                if (config.showHeader === true) {
+                    $(".table thead").css({'display': 'block'});
+                } else {
+                    $(".table thead").css({'display': 'none'});
+                }
+
                 // Show or hide the table border
                 if (config.showTableBorder === true) {
                     $("#lookerDataTable").addClass("table-bordered");
