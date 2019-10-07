@@ -62,13 +62,13 @@ const customVizDataTable = {
                 type: "boolean"
             },
             // PLOT
-            // showRowNumbers: {
-            //     default: false,
-            //     label: "Show Row Numbers",
-            //     order: 1,
-            //     section: "Plot",
-            //     type: "boolean"
-            // },
+            showRowNumbers: {
+                default: true,
+                label: "Show Row Numbers",
+                order: 1,
+                section: "Plot",
+                type: "boolean"
+            },
             // showSearchBar: {
             //     default: false,
             //     label: "Show Search Bar",
@@ -86,28 +86,28 @@ const customVizDataTable = {
             showHeader: {
                 default: true,
                 label: "Show Table Header",
-                order: 1,
+                order: 2,
                 section: "Plot",
                 type: "boolean"
             },
             showTableBorder: {
                 default: true,
                 label: "Show Table Border",
-                order: 2,
+                order: 3,
                 section: "Plot",
                 type: "boolean"
             },
             stripedRows: {
                 default: true,
                 label: "Striped Rows",
-                order: 3,
+                order: 4,
                 section: "Plot",
                 type: "boolean"
             },
             htmlFormatting: {
                 default: true,
                 label: "HTML Formatting",
-                order: 4,
+                order: 5,
                 section: "Plot",
                 type: "boolean"
             },
@@ -341,11 +341,11 @@ const customVizDataTable = {
 
                 // Show or hide row numbers
                 if (config.showRowNumbers === true) {
-                    $("#lookerDataTable thead tr").prepend("<th></th>");
-                    $("#lookerDataTable tbody tr").each((i, tr) => {
-                        i = i + 1;
-                        $(tr).prepend('<td>' + i + '</td>')
-                    })
+                    table.on('order.dt search.dt', function () {
+                        table.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                            cell.innerHTML = i + 1;
+                        });
+                    }).draw();
                 }
 
                 // Show or hide the table headers
