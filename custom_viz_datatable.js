@@ -365,14 +365,10 @@ const customVizDataTable = {
                 }
 
                 // Set table header font-size
-                $(".table thead th").css({'font-size': config.headerFontSize + 'px';
-            })
-                ;
+                $(".table thead th").css({'font-size': config.headerFontSize + 'px'});
 
                 // Set table row font-size
-                $(".table thead td").css({'font-size': config.rowFontSize + 'px';
-            })
-                ;
+                $(".table thead td").css({'font-size': config.rowFontSize + 'px'});
 
             });
 
