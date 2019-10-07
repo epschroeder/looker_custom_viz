@@ -140,7 +140,6 @@ const customVizDataTable = {
                 }\
                 \
                 .table thead th {\
-                font-size: ' + config.fontSize + 'px;\
                 padding-right: 0 !important;\
                 }\
                 \
@@ -149,7 +148,6 @@ const customVizDataTable = {
                 }\
                 \
                 .table tbody td {\
-                font-size: ' + config.fontSize + 'px;\
                 }\
                 </style >';
 
@@ -365,6 +363,16 @@ const customVizDataTable = {
                 } else {
                     $("#lookerDataTable").removeClass("table-striped");
                 }
+
+                // Set table header font-size
+                $(".table thead th").css({'font-size': config.headerFontSize + 'px';
+            })
+                ;
+
+                // Set table row font-size
+                $(".table thead td").css({'font-size': config.rowFontSize + 'px';
+            })
+                ;
 
             });
 
