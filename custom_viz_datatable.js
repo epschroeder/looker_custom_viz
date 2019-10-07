@@ -41,7 +41,6 @@ const customVizDataTable = {
             // FORMATING
             headerFontSize: {
                 default: 12,
-                display_size: 'third',
                 label: 'Header Font Size',
                 order: 1,
                 section: 'Formatting',
@@ -49,7 +48,6 @@ const customVizDataTable = {
             },
             rowFontSize: {
                 default: 12,
-                display_size: 'third',
                 label: 'Row Font Size',
                 order: 2,
                 section: 'Formatting',
@@ -368,12 +366,13 @@ const customVizDataTable = {
                 $(".table thead th").css({'font-size': config.headerFontSize + 'px'});
 
                 // Set table row font-size
-                $(".table thead td").css({'font-size': config.rowFontSize + 'px'});
+                $(".table tbody td").css({'font-size': config.rowFontSize + 'px'});
 
             });
 
 
             console.log(config.headerFontSize);
+            console.log(config.rowFontSize);
             // console.log(totalArray);
             doneRendering();
         }
