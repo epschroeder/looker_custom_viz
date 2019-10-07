@@ -38,7 +38,23 @@ const customVizDataTable = {
          **/
 
         options: {
-            //
+            // FORMATING
+            headerFontSize: {
+                default: 12,
+                display_size: 'third',
+                label: 'Header Font Size',
+                order: 1,
+                section: 'Formatting',
+                type: 'number',
+            },
+            rowFontSize: {
+                default: 12,
+                display_size: 'third',
+                label: 'Row Font Size',
+                order: 2,
+                section: 'Formatting',
+                type: 'number',
+            },
             // SERIES
             showFullFieldName: {
                 default: false,
@@ -69,37 +85,34 @@ const customVizDataTable = {
             //     section: "Plot",
             //     type: "boolean"
             // },
+            showHeader: {
+                default: true,
+                label: "Show Table Header",
+                order: 1,
+                section: "Plot",
+                type: "boolean"
+            },
             showTableBorder: {
                 default: true,
                 label: "Show Table Border",
-                order: 1,
+                order: 2,
                 section: "Plot",
                 type: "boolean"
             },
             stripedRows: {
                 default: true,
                 label: "Striped Rows",
-                order: 2,
+                order: 3,
                 section: "Plot",
                 type: "boolean"
             },
             htmlFormatting: {
                 default: true,
                 label: "HTML Formatting",
-                order: 3,
+                order: 4,
                 section: "Plot",
                 type: "boolean"
             },
-            // fontSize: {
-            //     default: 12,
-            //     display_size: 'third',
-            //     label: 'Font size',
-            //     order: 6,
-            //     section: 'Plot',
-            //     type: 'number',
-            // },
-
-
         },
         /**
          * The create function gets called when the visualization is mounted but before any
@@ -140,7 +153,7 @@ const customVizDataTable = {
                 }\
                 </style >';
 
-// Create a container element to let us center the text.
+            // Create a container element to let us center the text.
             this._vizContainer = element.appendChild(document.createElement("div"));
             // this._vizContainer.className = "container-fluid";
         },
@@ -356,8 +369,8 @@ const customVizDataTable = {
             });
 
 
-            console.log(dataArray);
-            console.log(totalArray);
+            console.log(config.headerFontSize);
+            // console.log(totalArray);
             doneRendering();
         }
     }
