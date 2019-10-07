@@ -378,8 +378,7 @@ const customVizDataTable = {
             });
 
 
-            console.log(config.headerFontSize);
-            console.log(config.rowFontSize);
+            console.log(config.showRowNumbers);
             // console.log(totalArray);
             doneRendering();
         }
