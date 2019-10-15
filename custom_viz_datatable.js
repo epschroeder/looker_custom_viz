@@ -350,9 +350,7 @@ const customVizDataTable = {
                 }
 
                 // Show or hide the table headers
-                if (config.showHeader === true) {
-                    $(".table thead").css({'display': 'block'});
-                } else {
+                if (config.showHeader === false) {
                     $(".table thead").css({'display': 'none'});
                 }
 
@@ -379,7 +377,7 @@ const customVizDataTable = {
             });
 
 
-            console.log(config.showRowNumbers);
+            // console.log(headerArray);
             // console.log(totalArray);
             doneRendering();
         }
