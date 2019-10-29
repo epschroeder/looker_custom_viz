@@ -332,24 +332,6 @@ const customVizDataTable = {
                     }
                 }
 
-                // Show or hide the table headers
-                if (config.showHeader === false) {
-                    $(".table thead").css({'display': 'none'});
-                }
-
-                // Show or hide the table border
-                if (config.showTableBorder === true) {
-                    $("#lookerDataTable").addClass("table-bordered");
-                } else {
-                    $("#lookerDataTable").removeClass("table-bordered");
-                }
-
-                // Show or hide the striped rows
-                if (config.stripedRows === true) {
-                    $("#lookerDataTable").addClass("table-striped");
-                } else {
-                    $("#lookerDataTable").removeClass("table-striped");
-                }
 
                 // console.log(queryResponse);
                 var table = $("#lookerDataTable").DataTable({
@@ -367,6 +349,25 @@ const customVizDataTable = {
                     },
                 }).columns.adjust();
             });
+
+            // Show or hide the table headers
+            if (config.showHeader === false) {
+                $(".table thead").css({'display': 'none'});
+            }
+
+            // Show or hide the table border
+            if (config.showTableBorder === true) {
+                $("#lookerDataTable").addClass("table-bordered");
+            } else {
+                $("#lookerDataTable").removeClass("table-bordered");
+            }
+
+            // Show or hide the striped rows
+            if (config.stripedRows === true) {
+                $("#lookerDataTable").addClass("table-striped");
+            } else {
+                $("#lookerDataTable").removeClass("table-striped");
+            }
 
             // Set table header font-size
             $(".table thead th").css({'font-size': config.headerFontSize + 'px'});
