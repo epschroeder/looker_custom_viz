@@ -326,6 +326,7 @@ const customVizDataTable = {
 
                 // Show or hide row numbers
                 if (config.showRowNumbers === true) {
+                    headerArray.unshift('');
                     for (var i = 0; i < dataArray.length; i++) {
                         dataArray[i].unshift(i);
                     }
