@@ -323,25 +323,12 @@ const customVizDataTable = {
             this._vizContainer.innerHTML = html;
 
             $(document).ready(function () {
-                // console.log(queryResponse);
-                var table = $("#lookerDataTable").DataTable({
-                    autoWidth: true,
-                    ordering: false,
-                    searching: false,
-                    paging: false,
-                    info: config.showPagination,
-                    data: dataArray,
-                    columns: headerArray,
-                    order: sortArray,
-                    fixedHeader: {
-                        header: true,
-                        footer: true
-                    },
-                }).columns.adjust();
 
                 // Show or hide row numbers
                 if (config.showRowNumbers === true) {
-
+                    for (var i = 0; i < dataArray.length; i++) {
+                        dataArray[i].unshift(i);
+                    }
                 }
 
                 // Show or hide the table headers
@@ -369,16 +356,24 @@ const customVizDataTable = {
                 // Set table row font-size
                 $(".table tbody td").css({'font-size': config.rowFontSize + 'px'});
 
-
+                // console.log(queryResponse);
+                var table = $("#lookerDataTable").DataTable({
+                    autoWidth: true,
+                    ordering: false,
+                    searching: false,
+                    paging: false,
+                    info: config.showPagination,
+                    data: dataArray,
+                    columns: headerArray,
+                    order: sortArray,
+                    fixedHeader: {
+                        header: true,
+                        footer: true
+                    },
+                }).columns.adjust();
             });
 
 
-            // console.log(headerArray);
-            //console.log(dataArray);
-
-            for (var i = 0; i < dataArray.length; i++) {
-                console.log(dataArray[i]);
-            }
             doneRendering();
         }
     }
