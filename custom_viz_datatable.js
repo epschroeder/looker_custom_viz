@@ -351,12 +351,6 @@ const customVizDataTable = {
                     $("#lookerDataTable").removeClass("table-striped");
                 }
 
-                // Set table header font-size
-                $(".table thead th").css({'font-size': config.headerFontSize + 'px'});
-
-                // Set table row font-size
-                $(".table tbody td").css({'font-size': config.rowFontSize + 'px'});
-
                 // console.log(queryResponse);
                 var table = $("#lookerDataTable").DataTable({
                     autoWidth: true,
@@ -374,6 +368,11 @@ const customVizDataTable = {
                 }).columns.adjust();
             });
 
+            // Set table header font-size
+            $(".table thead th").css({'font-size': config.headerFontSize + 'px'});
+
+            // Set table row font-size
+            $(".table tbody td").css({'font-size': config.rowFontSize + 'px'});
 
             doneRendering();
         }
