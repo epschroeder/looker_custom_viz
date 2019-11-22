@@ -328,7 +328,7 @@ const customVizDataTable = {
                 if (config.showRowNumbers === true) {
                     headerArray.unshift('');
                     for (var i = 0; i < dataArray.length; i++) {
-                        dataArray[i].unshift(i);
+                        dataArray[i].unshift(i + 1);
                     }
                 }
 
