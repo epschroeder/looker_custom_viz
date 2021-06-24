@@ -26,7 +26,7 @@ const customVizTextFromData = {
 
     // Create a container element to let us center the text.
     this._vizContainer = element.appendChild(document.createElement("div"));
-    this._vizContainer.className = "";
+    this._vizContainer.className = "flex text-primary";
   },
 
   /**
