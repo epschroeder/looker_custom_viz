@@ -66,7 +66,9 @@ const customVizTextFromData = {
 
       // Insert the data into text elements
       html +=
-        "<span class='h4'>" + LookerCharts.Utils.htmlForCell(title) + "</span>";
+        "<span class='h4'>" +
+        LookerCharts.Utils.htmlForCell(title) +
+        "</span><br />";
       html += "<span>" + LookerCharts.Utils.textForCell(paragraph) + "</span>";
     }
 
