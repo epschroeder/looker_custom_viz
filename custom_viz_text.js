@@ -26,7 +26,7 @@ const customVizTextFromData = {
 
     // Create a container element to let us center the text.
     this._vizContainer = element.appendChild(document.createElement("div"));
-    this._vizContainer.className = "container-fluid";
+    this._vizContainer.className = "";
   },
 
   /**
@@ -65,8 +65,9 @@ const customVizTextFromData = {
       var paragraph = row[queryResponse.fields.dimensions[1].name];
 
       // Insert the data into text elements
-      html += "<h4>" + LookerCharts.Utils.htmlForCell(title) + "</h4>";
-      html += "<p>" + LookerCharts.Utils.textForCell(paragraph) + "</p>";
+      html +=
+        "<span class='h4'>" + LookerCharts.Utils.htmlForCell(title) + "</span>";
+      html += "<span>" + LookerCharts.Utils.textForCell(paragraph) + "</span>";
     }
 
     html += "";
