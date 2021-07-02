@@ -22,7 +22,7 @@ const customVizTextFromData = {
   create: function (element, config) {
     // Insert Bootstrap css file
     element.innerHTML =
-      '<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet">';
+      '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">';
 
     // Create a container element to let us center the text.
     this._vizContainer = element.appendChild(document.createElement("div"));
